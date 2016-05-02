@@ -55,6 +55,11 @@ section {
   background-color: gainsboro;
 }
 
+.Table-Container {
+  display: flex;
+  flex-direction: row;
+}
+
 .Chart-Container {
   background-color: beige;
   height: 400px;
@@ -62,6 +67,7 @@ section {
 
 table {
   border-collapse: collapse;
+  margin: auto 10px auto 10px;
 }
 
 table, th, td {
