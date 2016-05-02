@@ -37,3 +37,8 @@ Who did what:
 
 * Sarah: navigator
 * Mike: driver
+
+Tasks completed:
+
+* Created function that handles the Keep-Rolling event and re-renders the necessary images
+* Added event listener to Keep-Rolling button 
