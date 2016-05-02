@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <link href="../css/stats.css" type="text/css" rel="stylesheet"></link>
+</head>
+
+<body>
+  <main>
+    <header>
+      <img class="Logo"/>
+      <h1 class="Game-Name">Find Sasquatch</h1>
+    </header>
+
+    <nav>
+      <a href="#">Home</a>
+      <a href="#">Scores</a>
+      <a href="#">About Team Sasquatch</a>
+    </nav>
+
+    <section class="Sign-In">
+      <form>
+        <fieldset>
+          <div class="Form-Content">
+            <div>
+              <label for="username">Your Username:</label>
+              <input name="username" type="string" required/>
+            </div>
+            <div class="Difficulty-Container">
+              <legend>Select Difficulty:</legend>
+              <select name="difficulty">
+                <option value="easy">Easy</option>
+                <option value="medium">Medium</option>
+                <option value="hard">Hard</option>
+              </select>
+            </div>
+            <button type="submit">Save Username</button>
+          </div>
+        </fieldset>
+      </form>
+    </section>
+
+    <section class="Score-Container">
+      <table>
+        <tr>
+          <th>Username</th>
+          <th>Score</th>
+        </tr>
+      </table>
+      <button class="Reset-Button">Reset High Scores</button>
+    </section>
+
+    <section class="Chart-Container">
+      <!-- <canvas></canvas> -->
+    </section>
+
+    <footer>
+      <a href="#">Home</a>
+      <a href="#">Scores</a>
+      <a href="#">About Team Sasquatch</a>
+    </footer>
+  </main>
+</body>
+
+</html>
