@@ -1,10 +1,16 @@
 'use strict';
 
+//Dice type arrays
+var orangeDiceArray = [];
+var blueDiceArray = [];
+var grayDiceArray = [];
+
 //Generic die constructor
 function Die(maul, photo, footprint) {
   this.maul = maul;
   this.photo = photo;
   this.footprint = footprint;
+  this.lastRoll = '';
 }
 
 //Method for generating random number
@@ -26,36 +32,95 @@ Gray.prototype = new Die(2,2,2);
 //Roll method for the orange dice
 Orange.prototype.roll = function() {
   var random = this.randomNumber();
+  var result = '';
   console.log(random);
   if (random === 1 || random === 2 || random === 3) {
-    return 'bad';
+    result = 'claw.png';
   } else if (random === 4) {
-    return 'good';
+    result = 'camera.png';
   } else {
-    return 'neutral';
+    result = 'tracks.jpg';
   }
+  this.lastRoll = result;
 };
 //Roll method for the blue dice
 Blue.prototype.roll = function() {
   var random = this.randomNumber();
+  var result = '';
   console.log(random);
   if (random === 1) {
-    return 'bad';
+    result = 'claw.png';
   } else if (random === 2 || random === 3 || random === 4) {
-    return 'good';
+    result = 'camera.png';
   } else {
-    return 'neutral';
+    result = 'tracks.jpg';
   }
+  this.lastRoll = result;
 };
 //Roll method for the gray dice
 Gray.prototype.roll = function() {
   var random = this.randomNumber();
+  var result = '';
   console.log(random);
   if (random === 1 || random === 2) {
-    return 'bad';
+    result = 'claw.png';
   } else if (random === 3 || random === 4) {
-    return 'good';
+    result = 'camera.png';
   } else {
-    return 'netural';
+    result = 'tracks.jpg';
   }
+  this.lastRoll = result;
 };
+
+//iffy to populate the dice arrays on page load
+(function populateDieArrays(){
+  for(var die = 0; die < 4; die++){
+    var orange = new Orange();
+    var blue = new Blue();
+    var gray = new Gray();
+
+    orangeDiceArray.push(orange);
+    blueDiceArray.push(blue);
+    grayDiceArray.push(gray);
+  }
+})();
+
+//does the initial roll for a round.
+function startRound(){
+  for(var die = 0; die < 4; die++){
+    orangeDiceArray[die].roll();
+    blueDiceArray[die].roll();
+    grayDiceArray[die].roll();
+  }
+  //call to render images to page
+  renderDice();
+}
+
+//renders the dice pool
+function renderDice(){
+  var orangeWrapper = document.getElementById('orange-dice');
+  var grayWrapper = document.getElementById('gray-dice');
+  var blueWrapper = document.getElementById('blue-dice');
+
+  orangeWrapper.innerHTML = null;
+  grayWrapper.innerHTML = null;
+  blueWrapper.innerHTML = null;
+
+  for(var die = 0; die < 4; die++){
+    var orangeDie = document.createElement('img');
+    var grayDie = document.createElement('img');
+    var blueDie = document.createElement('img');
+
+    orangeDie.classList.add(orangeDiceArray[die].lastRoll.split('.')[0]);
+    grayDie.classList.add(grayDiceArray[die].lastRoll.split('.')[0]);
+    blueDie.classList.add(blueDiceArray[die].lastRoll.split('.')[0]);
+
+    orangeDie.src = '../images/' + orangeDiceArray[die].lastRoll;
+    grayDie.src = '../images/' + grayDiceArray[die].lastRoll;
+    blueDie.src = '../images/' + blueDiceArray[die].lastRoll;
+
+    orangeWrapper.appendChild(orangeDie);
+    grayWrapper.appendChild(grayDie);
+    blueWrapper.appendChild(blueDie);
+  }
+}

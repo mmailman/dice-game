@@ -25,6 +25,15 @@ header{
    width:inherit;
    background-color: pink;
  }
+
+ img{
+   max-height: 50px;
+   max-width: 50px;
+   object-fit: scale-down;
+   border-style:solid;
+   border-width:medium;
+   margin: 5px;
+ }
 .Logo{
   display: flex;
   height:100%;
@@ -76,6 +85,14 @@ header{
    width:100%;
  }
 
+ .claw {
+   border-color: red;
+ }
+
+ .camera {
+   border-color: green;
+ }
+
  footer{
    display: flex;
    flex-direction: row;
@@ -83,3 +100,15 @@ header{
    width: inherit;
    background-color: teal;
  }
+
+#orange-dice > img{
+  background-color: orange;
+}
+
+#gray-dice > img{
+  background-color: lightGray;
+}
+
+#blue-dice > img{
+  background-color: skyBlue;
+}
