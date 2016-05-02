@@ -92,6 +92,7 @@ function startRound(){
     grayDiceArray[die].roll();
   }
   //call to render images to page
+  renderDice();
 }
 
 function renderDice(){
@@ -104,8 +105,16 @@ function renderDice(){
     var grayDie = document.createElement('img');
     var blueDie = document.createElement('img');
 
-    orangeDie.src = 'images/' + orangeDiceArray[die].lastRoll;
-    grayDie.src = 'images/' + grayDiceArray[die].lastRoll;
-    blueDie.src = 'images/' + blueDiceArray[die].lastRoll;
+    orangeDie.classList.add(orangeDiceArray[die].lastRoll.split('.')[0]);
+    grayDie.classList.add(grayDiceArray[die].lastRoll.split('.')[0]);
+    blueDie.classList.add(blueDiceArray[die].lastRoll.split('.')[0]);
+
+    orangeDie.src = '../images/' + orangeDiceArray[die].lastRoll;
+    grayDie.src = '../images/' + grayDiceArray[die].lastRoll;
+    blueDie.src = '../images/' + blueDiceArray[die].lastRoll;
+
+    orangeWrapper.appendChild(orangeDie);
+    grayWrapper.appendChild(grayDie);
+    blueWrapper.appendChild(blueDie);
   }
 }
