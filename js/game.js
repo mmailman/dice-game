@@ -124,3 +124,21 @@ function renderDice(){
     blueWrapper.appendChild(blueDie);
   }
 }
+
+//function that handles Keep-Rolling event
+function handleKeepRolling() {
+  for (var die = 0; die < 4; die++) {
+    if (orangeDiceArray[die].lastRoll === 'tracks.jpg') {
+      orangeDiceArray[die].roll();
+    }
+    if (grayDiceArray[die].lastRoll === 'tracks.jpg') {
+      grayDiceArray[die].roll();
+    }
+    if (blueDiceArray[die].lastRoll === 'tracks.jpg') {
+      blueDiceArray[die].roll();
+    }
+  }
+  renderDice();
+}
+//adds event listener to Keep-Rolling button
+document.getElementById('Keep-Rolling').addEventListener('click', handleKeepRolling);
