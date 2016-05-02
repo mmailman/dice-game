@@ -17,6 +17,18 @@
         <a href="#">About Team Sasquatch</a>
       </nav>
 
+      <section class="Username-And-Difficulty">
+        <form id="difficulty">
+          <label for="difficulty">Hi,<span id="username"></span> please select your difficulty.</label>
+          <select name="difficulty" class="difficulty-submission" id="select-difficulty">
+            <option value="easy">Easy</option>
+            <option value="medium">Medium</option>
+            <option value="hard">Hard</option>
+          </select>
+          <button type="submit" class="difficulty-submission">Start Game</button>
+        </form>
+      </section>
+
       <section class="Image-And-Rules">
         <div class="Image-Animation">
         </div>
@@ -34,8 +46,8 @@
           <div class="Die-Row" id="gray-dice"></div>
           <div class="Die-Row" id="blue-dice"></div>
           <div class="Button-Row">
-          <button id="End-Turn">End Turn</button>
-          <button id="Keep-Rolling">Keep Rolling</button>
+          <button id="End-Turn" disabled>End Turn</button>
+          <button id="Keep-Rolling" disabled>Keep Rolling</button>
           </div>
         </div>
         <div class="Status-Board">
