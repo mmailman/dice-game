@@ -35,11 +35,11 @@ Orange.prototype.roll = function() {
   var result = '';
   console.log(random);
   if (random === 1 || random === 2 || random === 3) {
-    result = 'bad';
+    result = 'claw.png';
   } else if (random === 4) {
-    result = 'good';
+    result = 'camera.png';
   } else {
-    result = 'neutral';
+    result = 'tracks.jpg';
   }
   this.lastRoll = result;
 };
@@ -49,11 +49,11 @@ Blue.prototype.roll = function() {
   var result = '';
   console.log(random);
   if (random === 1) {
-    result = 'bad';
+    result = 'claw.png';
   } else if (random === 2 || random === 3 || random === 4) {
-    result = 'good';
+    result = 'camera.png';
   } else {
-    result = 'neutral';
+    result = 'tracks.jpg';
   }
   this.lastRoll = result;
 };
@@ -63,11 +63,11 @@ Gray.prototype.roll = function() {
   var result = '';
   console.log(random);
   if (random === 1 || random === 2) {
-    result = 'bad';
+    result = 'claw.png';
   } else if (random === 3 || random === 4) {
-    result = 'good';
+    result = 'camera.png';
   } else {
-    result = 'netural';
+    result = 'tracks.jpg';
   }
   this.lastRoll = result;
 };
@@ -86,5 +86,26 @@ Gray.prototype.roll = function() {
 })();
 
 function startRound(){
-  
+  for(var die = 0; die < 4; die++){
+    orangeDiceArray[die].roll();
+    blueDiceArray[die].roll();
+    grayDiceArray[die].roll();
+  }
+  //call to render images to page
+}
+
+function renderDice(){
+  var orangeWrapper = document.getElementById('orange-dice');
+  var grayWrapper = document.getElementById('gray-dice');
+  var blueWrapper = document.getElementById('blue-dice');
+
+  for(var die = 0; die < 4; die++){
+    var orangeDie = document.createElement('img');
+    var grayDie = document.createElement('img');
+    var blueDie = document.createElement('img');
+
+    orangeDie.src = 'images/' + orangeDiceArray[die].lastRoll;
+    grayDie.src = 'images/' + grayDiceArray[die].lastRoll;
+    blueDie.src = 'images/' + blueDiceArray[die].lastRoll;
+  }
 }
