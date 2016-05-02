@@ -41,4 +41,14 @@ Who did what:
 Tasks completed:
 
 * Created function that handles the Keep-Rolling event and re-renders the necessary images
-* Added event listener to Keep-Rolling button 
+* Added event listener to Keep-Rolling button
+
+Tasks completed:
+
+* Added new user function, which creates a user object with a username property
+* Added change user function, which allows you to add a second user on top of the first
+* When a new user is created, the objects are pushed to an array to allow us to access them
+* Set results containers to only display when someone is "signed in"
+
+* Keiran: driver
+* Rafi: navigator

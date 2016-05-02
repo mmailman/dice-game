@@ -38,6 +38,14 @@ section {
   width: 100%;
 }
 
+#Log-In {
+  display: block;
+}
+
+#Welcome-Container {
+  display: none;
+}
+
 .Form-Content {
   display: flex;
   flex-direction: row;
@@ -48,11 +56,25 @@ section {
   display: flex;
 }
 
+
+
+#Points-Container {
+  display: none;
+}
+
 .Score-Container {
-  display: flex;
   flex-direction: column;
   align-items: center;
   background-color: gainsboro;
+}
+
+.Table-Container {
+  display: flex;
+  flex-direction: row;
+}
+
+#Graph-Container {
+  display:none;
 }
 
 .Chart-Container {
@@ -62,6 +84,7 @@ section {
 
 table {
   border-collapse: collapse;
+  margin: auto 10px auto 10px;
 }
 
 table, th, td {
