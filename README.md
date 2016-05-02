@@ -9,7 +9,19 @@ Tasks completed:
 * Created Die type object constructors
 * Created roll methods for each of the die type objects
 
+
 Who did what:
 
 * Sarah: driver
 * Mike: navigator
+
+Tasks Completed:
+
+* Created basic HTML framework for the page
+* Added CSS styling to the elements
+* Incorporated Flexbox to handle positioning
+
+Who did what:
+
+* Keiran: navigator
+* Rafi: Driver
