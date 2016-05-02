@@ -4,6 +4,10 @@
 var orangeDiceArray = [];
 var blueDiceArray = [];
 var grayDiceArray = [];
+var maxRounds = 0;
+var roundCount = 0;
+var maxMauls = 5;
+var photosToWin = 0;
 
 //Generic die constructor
 function Die(maul, photo, footprint) {
@@ -140,5 +144,36 @@ function handleKeepRolling() {
   }
   renderDice();
 }
+
+// var maxRounds = 0;
+// var roundCount = 0;
+// var maxMauls = 5;
+// var photosToWin = 0;
+function handleDifficulty(event) {
+  event.preventDefault();
+  var difficultyForm = document.getElementsByClassName('difficulty-submission');
+  for (var i = 0; i < difficultyForm.length; i++) {
+    difficultyForm[i].disabled = true;
+    // console.log(difficultyForm[i]);
+  }
+  var difficultyChosen = document.getElementById('select-difficulty').value;
+  if (difficultyChosen === 'easy') {
+    maxRounds = 3;
+    photosToWin = 5;
+  } else if (difficultyChosen === 'medium') {
+    maxRounds = 3;
+    photosToWin = 7;
+  } else {
+    maxRounds = 2;
+    photosToWin = 7;
+  }
+  startRound();
+  document.getElementById('End-Turn').disabled = false;
+  document.getElementById('Keep-Rolling').disabled = false;
+}
+
+//adds event listener to submit button to choose difficulty
+document.getElementById('difficulty').addEventListener('submit', handleDifficulty);
+
 //adds event listener to Keep-Rolling button
 document.getElementById('Keep-Rolling').addEventListener('click', handleKeepRolling);
