@@ -25,3 +25,15 @@ Who did what:
 
 * Keiran: navigator
 * Rafi: Driver
+
+
+Tasks completed:
+
+* Created a function to do the first roll to start a round called startRound().
+* Created a function to render the dice pool called renderDice().
+* Added css for the dice images.
+
+Who did what:
+
+* Sarah: navigator
+* Mike: driver

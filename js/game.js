@@ -85,6 +85,7 @@ Gray.prototype.roll = function() {
   }
 })();
 
+//does the initial roll for a round.
 function startRound(){
   for(var die = 0; die < 4; die++){
     orangeDiceArray[die].roll();
@@ -95,10 +96,15 @@ function startRound(){
   renderDice();
 }
 
+//renders the dice pool
 function renderDice(){
   var orangeWrapper = document.getElementById('orange-dice');
   var grayWrapper = document.getElementById('gray-dice');
   var blueWrapper = document.getElementById('blue-dice');
+
+  orangeWrapper.innerHTML = null;
+  grayWrapper.innerHTML = null;
+  blueWrapper.innerHTML = null;
 
   for(var die = 0; die < 4; die++){
     var orangeDie = document.createElement('img');
