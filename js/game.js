@@ -1,10 +1,16 @@
 'use strict';
 
+//Dice type arrays
+var orangeDiceArray = [];
+var blueDiceArray = [];
+var grayDiceArray = [];
+
 //Generic die constructor
 function Die(maul, photo, footprint) {
   this.maul = maul;
   this.photo = photo;
   this.footprint = footprint;
+  this.lastRoll = '';
 }
 
 //Method for generating random number
@@ -26,36 +32,59 @@ Gray.prototype = new Die(2,2,2);
 //Roll method for the orange dice
 Orange.prototype.roll = function() {
   var random = this.randomNumber();
+  var result = '';
   console.log(random);
   if (random === 1 || random === 2 || random === 3) {
-    return 'bad';
+    result = 'bad';
   } else if (random === 4) {
-    return 'good';
+    result = 'good';
   } else {
-    return 'neutral';
+    result = 'neutral';
   }
+  this.lastRoll = result;
 };
 //Roll method for the blue dice
 Blue.prototype.roll = function() {
   var random = this.randomNumber();
+  var result = '';
   console.log(random);
   if (random === 1) {
-    return 'bad';
+    result = 'bad';
   } else if (random === 2 || random === 3 || random === 4) {
-    return 'good';
+    result = 'good';
   } else {
-    return 'neutral';
+    result = 'neutral';
   }
+  this.lastRoll = result;
 };
 //Roll method for the gray dice
 Gray.prototype.roll = function() {
   var random = this.randomNumber();
+  var result = '';
   console.log(random);
   if (random === 1 || random === 2) {
-    return 'bad';
+    result = 'bad';
   } else if (random === 3 || random === 4) {
-    return 'good';
+    result = 'good';
   } else {
-    return 'netural';
+    result = 'netural';
   }
+  this.lastRoll = result;
 };
+
+//iffy to populate the dice arrays on page load
+(function populateDieArrays(){
+  for(var die = 0; die < 4; die++){
+    var orange = new Orange();
+    var blue = new Blue();
+    var gray = new Gray();
+
+    orangeDiceArray.push(orange);
+    blueDiceArray.push(blue);
+    grayDiceArray.push(gray);
+  }
+})();
+
+function startRound(){
+  
+}
