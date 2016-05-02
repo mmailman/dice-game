@@ -1,0 +1,24 @@
+body{
+  display:flex;
+  width: 100%;
+}
+main{
+  /*display:flex;*/
+  width:100%;
+}
+
+header{
+  flex-direction: row;
+  justify-content: flex-start;
+  height:100px;
+  width:;
+  background-color: skyblue;
+}
+ nav{
+   display:flex;
+   flex-direction: row;
+   justify-content: space-around;
+   height: 20px;
+   width:auto;
+   background-color: pink;
+ }
