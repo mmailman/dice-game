@@ -72,5 +72,7 @@ Tasks completed:
 
 * created a function to account to populate the status bar with the current stats.
 * created a win/loss message in the image container
+* fixed a bug to clear the status bar and image container when starting a new game
+* made a new array to store difficulty and score for each round of the game
 
 ________________________________________________________

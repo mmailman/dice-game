@@ -11,6 +11,8 @@ var photosToWin = 0;
 var mauledFlag = false;
 var scoreArray = [];
 var totalScore = 0;
+var scoreStorage = [];
+var difficultyStorage = [];
 
 //Generic die constructor
 function Die(maul, photo, footprint) {
@@ -224,6 +226,11 @@ function handleKeepRolling() {
 //function that handles difficulty Selection and Game Start
 function handleDifficulty(event) {
   roundCount = 0;
+  scoreArray = [];
+  var getStatusDiv = document.getElementById('Render-Zone');
+  getStatusDiv.innerHTML = null;
+  var clearImageAnimation = document.getElementById('imageAnimation');
+  clearImageAnimation.innerHTML = null;
   event.preventDefault();
   var difficultyForm = document.getElementsByClassName('difficulty-submission');
   for (var i = 0; i < difficultyForm.length; i++) {
@@ -273,8 +280,9 @@ function handleEndTurn(){
     var difficultyForm = document.getElementsByClassName('difficulty-submission');
     for (var i = 0; i < difficultyForm.length; i++) {
       difficultyForm[i].disabled = false;
-    // Trigger End game logic
     }
+    scoreStorage.push(scoreArray);
+    difficultyStorage.push(document.getElementById('select-difficulty').value);
   } else{
     document.getElementById('End-Turn').disabled = true;
     document.getElementById('Keep-Rolling').disabled = true;
@@ -286,6 +294,9 @@ function handleEndTurn(){
     for (var i = 0; i < difficultyForm.length; i++) {
       difficultyForm[i].disabled = false;
     }
+    scoreStorage.push(scoreArray);
+    difficultyStorage.push(document.getElementById('select-difficulty').value);
+
   }
 }
 
