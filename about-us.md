@@ -6,3 +6,6 @@
 
 * Sarah DeBey
 Sarah is an aspiring developer from the Pacific Northwest. In her free time she likes to hike, camp, and do other outdoorsy things. She has a black lab husky mix named Piper who she is slightly obsessed with and who is often the theme of or at least mentioned in her coding projects, much like this one. She hopes to someday live far outside the city on a homestead of sorts and be able to make her living as a freelance web developer.
+
+* Rafi Ronquillo
+Rafi is new to the world of web development. Originally from Oakland California, he has a BA from the University of Puget Sound. In his spare time, he enjoys riding his bike, playing trumpet, running, climbing, reading, coding and looking for Sasquatch. He hopes that some day soon he’ll capture that high-resolution photo of the ‘squatch.
