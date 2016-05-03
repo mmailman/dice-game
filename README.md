@@ -67,4 +67,10 @@ Tasks completed:
 * Sarah: driver
 * Mike: navigator
 
+* Rafi: driver
+* Keiran: chief navigation officer
+
+* created a function to account to populate the status bar with the current stats.
+* created a win/loss message in the image container
+
 ________________________________________________________
