@@ -283,6 +283,9 @@ function handleEndTurn(){
     }
     scoreStorage.push(scoreArray);
     difficultyStorage.push(document.getElementById('select-difficulty').value);
+    localStorage.clear();
+    localStorage.setItem('Scores', JSON.stringify(scoreStorage));
+    localStorage.setItem('Difficulties', JSON.stringify(difficultyStorage));
   } else{
     document.getElementById('End-Turn').disabled = true;
     document.getElementById('Keep-Rolling').disabled = true;
@@ -296,9 +299,22 @@ function handleEndTurn(){
     }
     scoreStorage.push(scoreArray);
     difficultyStorage.push(document.getElementById('select-difficulty').value);
-
+    localStorage.setItem('Scores', JSON.stringify(scoreStorage));
+    localStorage.setItem('Difficulties', JSON.stringify(difficultyStorage));
   }
 }
+// Iffy to check local storage for game data
+(function checkLocal() {
+  if(localStorage.getItem('Scores') && localStorage.getItem('Difficulties')) {
+    console.log('Local storage exists for scores & difficulties');
+    var parsedScores = JSON.parse(localStorage.getItem('Scores'));
+    var parsedDifficulties = JSON.parse(localStorage.getItem('Difficulties'));
+    difficultyStorage = parsedDifficulties;
+    scoreStorage = parsedScores;
+  } else {
+    console.log('local storage does not exist');
+  }
+})();
 
 //adds event listener to submit button to choose difficulty
 document.getElementById('difficulty').addEventListener('submit', handleDifficulty);
