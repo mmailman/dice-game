@@ -46,8 +46,6 @@ Tasks completed:
 * When a new user is created, the objects are pushed to an array to allow us to access them
 * Set results containers to only display when someone is "signed in"
 
-Who did what:
-
 * Keiran: driver
 * Rafi: navigator
 
@@ -66,41 +64,7 @@ Tasks completed:
 * Added difficulty dropdown to HTML and start game button functionality to JS
 * Difficulty and gameplay buttons toggle between disabled and enabled with click event
 
-Who did what:
-
 * Sarah: driver
 * Mike: navigator
 
 ________________________________________________________
-
-Task completed:
-
-* Added a function to count claws and determine mauling.
-* Render a message on Mauling in the Die-Title container.
-* Added disabling of the Keep Rolling button upon Mauling.
-
-Who did what:
-
-* Keiran: driver
-* Mike: navigator
-
-Taks completed:
-
-* Added a function to count cameras and log round scores to scoreArray.
-* Added click handler/listener for the End-Turn button.
-* Modified the startRound function to check for and remove mauled message and re-enable the Keep Rolling button.
-
-Who did what:
-* Keiran: navigator
-* Mike: driver
-
-Tasks completed:
-
-* Added color scheme to homepage and changed background colors for sections
-* Added background image to homepage
-* Added custom font to title of homepage
-* Worked on spacing and margins of page divs and sections
-
-Who did what:
-* Sarah: driver
-* Rafi: navigator

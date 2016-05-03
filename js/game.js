@@ -10,6 +10,7 @@ var maxMauls = 5;
 var photosToWin = 0;
 var mauledFlag = false;
 var scoreArray = [];
+var totalScore = 0;
 
 //Generic die constructor
 function Die(maul, photo, footprint) {
@@ -177,6 +178,32 @@ function countCamera(){
   scoreArray.push(cameraCounter);
 }
 
+//Generating a total score from scoreArray
+function checkScore(){
+  totalScore = 0;
+  for(var i = 0; i < scoreArray.length; i++){
+    totalScore += scoreArray[i];
+  }
+}
+
+//function to render the score status in status board
+function renderScore(){
+  var getStatusDiv = document.getElementById('Render-Zone');
+  getStatusDiv.innerHTML = null;
+  var roundsRemaining = maxRounds - roundCount;
+  checkScore();
+  var postRounds = document.createElement('p');
+  postRounds.textContent = 'You have ' + roundsRemaining + ' rounds left.';
+  var postCurrentScore = document.createElement('p');
+  postCurrentScore.textContent = 'Your current score is: ' + totalScore;
+  var postScoreToWin = document.createElement('p');
+  postScoreToWin.textContent = 'Score needed to win: ' + photosToWin;
+  postCurrentScore.id = 'scoreText';
+  getStatusDiv.appendChild(postRounds);
+  getStatusDiv.appendChild(postCurrentScore);
+  getStatusDiv.appendChild(postScoreToWin);
+}
+
 //function that handles Keep-Rolling event
 function handleKeepRolling() {
   for (var die = 0; die < 4; die++) {
@@ -196,6 +223,7 @@ function handleKeepRolling() {
 
 //function that handles difficulty Selection and Game Start
 function handleDifficulty(event) {
+  roundCount = 0;
   event.preventDefault();
   var difficultyForm = document.getElementsByClassName('difficulty-submission');
   for (var i = 0; i < difficultyForm.length; i++) {
@@ -213,13 +241,14 @@ function handleDifficulty(event) {
     maxRounds = 2;
     photosToWin = 7;
   }
-  startRound();
   document.getElementById('End-Turn').disabled = false;
   document.getElementById('Keep-Rolling').disabled = false;
+  startRound();
 }
 
 //function that handles End-Turn
 function handleEndTurn(){
+  roundCount++;
   if(mauledFlag !== true){
     countCamera();
     //call the status board render function.
@@ -227,10 +256,36 @@ function handleEndTurn(){
     scoreArray.push(0);
     mauledFlag = false;
   }
-  if(roundCount < maxRounds){
+  // checkScore();
+  renderScore();
+  if(roundCount < maxRounds && totalScore < photosToWin){
     startRound();
-  }else{
+  } else if(totalScore >= photosToWin){
+    document.getElementById('End-Turn').disabled = true;
+    document.getElementById('Keep-Rolling').disabled = true;
+    document.getElementById('scoreText').style.color = 'green';
+    var winText = document.createElement('p');
+    winText.textContent = 'Congratualations, you\'ve solved the mystery of Sasquatch!';
+    document.getElementById('imageAnimation').appendChild(winText);
+    var winningGif = document.createElement('img');
+    winningGif.src = '../images/sasquatchGif.gif';
+    document.getElementById('imageAnimation').appendChild(winningGif);
+    var difficultyForm = document.getElementsByClassName('difficulty-submission');
+    for (var i = 0; i < difficultyForm.length; i++) {
+      difficultyForm[i].disabled = false;
     // Trigger End game logic
+    }
+  } else{
+    document.getElementById('End-Turn').disabled = true;
+    document.getElementById('Keep-Rolling').disabled = true;
+    document.getElementById('scoreText').style.color = 'red';
+    var loseText = document.createElement('p');
+    loseText.textContent = 'Sorry, you\'ve been mauled to death. Please seek medical attention and try again later!';
+    document.getElementById('imageAnimation').appendChild(loseText);
+    var difficultyForm = document.getElementsByClassName('difficulty-submission');
+    for (var i = 0; i < difficultyForm.length; i++) {
+      difficultyForm[i].disabled = false;
+    }
   }
 }
 
