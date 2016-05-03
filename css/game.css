@@ -3,16 +3,21 @@
     src: url('../filmfonts_jurassic-park/jurassic_park.ttf');
 }
 
-body{
+body {
   display:flex;
+  position: absolute;
+  flex-wrap: wrap;
+  min-height: 100%;
   width: 100%;
   flex-direction: column;
   align-items: center;
-  margin: 0;
+  margin: 0 auto;
   padding: 0;
-  background-image: url('../images/diceforest3.jpeg');
+  background-image: url('../images/shady-forest.jpg');
 }
+
 main{
+  margin-top: 50px;
   display:flex;
   width: 90%;
   align-items: center;
@@ -20,14 +25,16 @@ main{
 }
 
 header{
-  display:flex;;
+  display:flex;
+  position: relative;
   flex-direction: column;
   align-items:center;
   width: 100%;
   background-color: #ecece4;
+  opacity: .9;
   border-bottom-style: solid;
   border-width: thin;
-  margin-bottom: 10px;
+
 }
 
  nav{
@@ -37,6 +44,8 @@ header{
    height: 20px;
    width:inherit;
    background-color: #ecece4;
+   opacity: .9;
+   margin-bottom: 5px;
  }
 
  img{
@@ -50,6 +59,7 @@ header{
 
  section {
    background-color: #ecece4;
+   opacity: .9;
    margin: 5px auto;
  }
 
@@ -57,17 +67,39 @@ header{
    margin: 10px auto;
  }
 
+h3 {
+  padding: 0px 15px;
+  font-family: 'Shadows Into Light', cursive;
+  font-size: 30px;
+}
+
  a {
    text-decoration: none;
+   font-family: 'Shadows Into Light', cursive;
+   font-size: 20px;
+   color: black;
+ }
+
+ a:hover {
+   color: green;
  }
 
  footer{
+   position: relative;
+   bottom: 0;
+   right: 0;
+   left: 0;
+   border-top-style: solid;
+   border-width: thin;
    display: flex;
    flex-direction: row;
    justify-content: space-around;
    width: inherit;
    background-color: #ecece4;
-   margin-top: 10px;
+   opacity: .9;
+   margin-top: 50px;
+   height: 40px;
+   padding-top: 15px;
  }
 
 .Name-Header{
@@ -90,32 +122,50 @@ header{
 
  .Image-And-Rules{
    display: flex;
-   justify-content: space-around;
+   align-items: center;
    width:inherit;
  }
+
+.Rules {
+  min-height: 297px;
+  width: 30%;
+  border: solid black thin;
+}
+
+.Image-Animation {
+  min-height: 297px;
+  width: 30%;
+  border: solid black thin;
+}
 
  .Die-Container{
    border: solid black thin;
    width: 30%;
+   /*align-items: center;*/
  }
  .Status-Board{
    border: solid black thin;
    width: 30%;
+   min-height: 297px;
  }
 
  .Dice-And-Status{
    display: flex;
    justify-content: space-around;
    width: inherit;
+   align-items: center;
  }
 
  .Die-Row{
    display: flex;
+   flex-wrap: wrap;
    justify-content: space-between;
-   width:100%;
-   height:50px;
+   width:90%;
+   min-height: 50px;
+   height:100%;
    border: solid black thin;
-   margin-bottom: 10px;
+   /*margin-bottom: 10px;*/
+   margin: 5px auto;
  }
 
  .Button-Row{
@@ -135,8 +185,12 @@ header{
  .Username-And-Difficulty {
    width: inherit;
    text-align: center;
+   height: 40px;
  }
 
+#difficulty {
+  margin-top: 10px;
+}
 
 #orange-dice > img{
   background-color: orange;

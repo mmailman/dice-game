@@ -104,3 +104,24 @@ Tasks completed:
 Who did what:
 * Sarah: driver
 * Rafi: navigator
+
+Tasks completed:
+
+* Refactored HTML code on home and game page
+* Adjusted margins and paddings on elements to improve aesthetics
+* Adjusted color scheme and background image on game page
+
+Who did what:
+* Mike: driver
+* Sarah: navigator
+
+Tasks completed:
+
+* Added responsiveness to home and game pages
+* Made sticky footer
+* Uploaded custom font-family
+* Changed background-image
+
+Who did what:
+* Sarah: driver
+* Mike: navigator

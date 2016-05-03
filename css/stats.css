@@ -5,15 +5,19 @@
 
 body {
   display:flex;
+  position: absolute;
+  flex-wrap: wrap;
+  min-height: 100%;
   width: 100%;
   flex-direction: column;
   align-items: center;
-  margin: 0;
+  margin: 0 auto;
   padding: 0;
-  background-image: url('../images/diceforest3.jpeg');
+  background-image: url('../images/shady-forest.jpg');
 }
 
 main {
+  margin-top: 50px;
   display:flex;
   width: 90%;
   align-items: center;
@@ -21,14 +25,15 @@ main {
 }
 
 header{
-  display:flex;;
+  display:flex;
+  position: relative;
   flex-direction: column;
   align-items:center;
   width: 100%;
   background-color: #ecece4;
+  opacity: .9;
   border-bottom-style: solid;
   border-width: thin;
-  margin-bottom: 10px;
 }
 
 nav{
@@ -38,10 +43,13 @@ nav{
   height: 20px;
   width:inherit;
   background-color: #ecece4;
+  opacity: .9;
+  margin-bottom: 5px;
 }
 
 section {
   background-color: #ecece4;
+  opacity: .9;
   margin: 5px auto;
 }
 
@@ -59,9 +67,47 @@ img {
   margin: 5px;
 }
 
+table {
+  border-collapse: collapse;
+  margin: auto 10px auto 10px;
+}
+
+table, th, td {
+  border: solid black thin;
+}
+
+th, td {
+  width: 150px;
+}
+
+footer {
+  position: relative;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  border-top-style: solid;
+  border-width: thin;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  width: inherit;
+  background-color: #ecece4;
+  opacity: .9;
+  height: 40px;
+  margin-top: 50px;
+  padding-top: 15px;
+}
  a {
     text-decoration: none;
+    color: black;
+    font-family: 'Shadows Into Light', cursive;
+    font-size: 20px;
+
  }
+
+a:hover {
+  color: green;
+}
 
  .Name-Header{
    width:100%;
@@ -86,13 +132,6 @@ img {
  }
 
 
-#Log-In {
-  display: block;
-}
-
-#Welcome-Container {
-  display: none;
-}
 
 .Form-Content {
   display: flex;
@@ -102,10 +141,6 @@ img {
 
 .Difficulty-Container {
   display: flex;
-}
-
-#Points-Container {
-  display: none;
 }
 
 .Score-Container {
@@ -119,35 +154,23 @@ img {
   flex-direction: row;
 }
 
-#Graph-Container {
-  display:none;
-}
-
 .Chart-Container {
   /*background-color: #ecece4;*/
   height: 400px;
 }
 
-table {
-  border-collapse: collapse;
-  margin: auto 10px auto 10px;
+#Log-In {
+  display: block;
 }
 
-table, th, td {
-  border: solid black thin;
+#Welcome-Container {
+  display: none;
 }
 
-th, td {
-  width: 150px;
+#Points-Container {
+  display: none;
 }
 
-footer{
-  border-top-style: solid;
-  border-width: thin;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  align-items: baseline;
-  width: inherit;
-  background-color: #ecece4;
+#Graph-Container {
+  display:none;
 }
