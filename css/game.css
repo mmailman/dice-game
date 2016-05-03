@@ -1,29 +1,42 @@
+@font-face {
+    font-family: sasquatchFont;
+    src: url('../filmfonts_jurassic-park/jurassic_park.ttf');
+}
+
 body{
   display:flex;
   width: 100%;
+  flex-direction: column;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+  background-image: url('../images/diceforest3.jpeg');
 }
 main{
   display:flex;
-  flex-direction: column;
+  width: 90%;
   align-items: center;
-  width:100%;
+  flex-direction: column;
 }
 
 header{
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  height:100px;
-  width:inherit;
-  background-color: skyblue;
+  display:flex;;
+  flex-direction: column;
+  align-items:center;
+  width: 100%;
+  background-color: #ecece4;
+  border-bottom-style: solid;
+  border-width: thin;
+  margin-bottom: 10px;
 }
+
  nav{
    display:flex;
    flex-direction: row;
    justify-content: space-around;
    height: 20px;
    width:inherit;
-   background-color: pink;
+   background-color: #ecece4;
  }
 
  img{
@@ -35,37 +48,55 @@ header{
    margin: 5px;
  }
 
+ section {
+   background-color: #ecece4;
+   margin: 5px auto;
+ }
+
+ section > div {
+   margin: 10px auto;
+ }
+
+ a {
+   text-decoration: none;
+ }
+
  footer{
    display: flex;
    flex-direction: row;
    justify-content: space-around;
    width: inherit;
-   background-color: teal;
+   background-color: #ecece4;
+   margin-top: 10px;
  }
 
+.Name-Header{
+  width:100%;
+  height: 60px;
+  line-height: 20px;
+}
+
 .Logo{
-  display: flex;
-  height:100%;
+  height:150px;
   width:150px;
   border: black solid thin;
-  margin-left: 25px;
+  position: absolute;
 }
 .Game-Name{
-  margin-left: 100px;
+  font-family: sasquatchFont;
+  text-align: center;
+  vertical-align: middle;
 }
 
  .Image-And-Rules{
    display: flex;
    justify-content: space-around;
    width:inherit;
-   background-color: blue;
  }
 
  .Die-Container{
-
    border: solid black thin;
    width: 30%;
-
  }
  .Status-Board{
    border: solid black thin;
@@ -76,7 +107,6 @@ header{
    display: flex;
    justify-content: space-around;
    width: inherit;
-   background-color: magenta;
  }
 
  .Die-Row{
@@ -102,11 +132,10 @@ header{
    border-color: green;
  }
 
- /*.Username-And-Difficulty {
-   display: flex;
-   flex-direction: row;
-   justify-content: flex-start;
- }*/
+ .Username-And-Difficulty {
+   width: inherit;
+   text-align: center;
+ }
 
 
 #orange-dice > img{

@@ -1,65 +1,90 @@
+@font-face {
+  font-family: sasquatchFont;
+  src: url('../filmfonts_jurassic-park/jurassic_park.ttf');
+}
+
 body {
+  display:flex;
+  width: 100%;
+  flex-direction: column;
+  align-items: center;
+  margin: 0;
+  padding: 0;
   background-image: url('../images/diceforest3.jpeg');
 }
 
 main {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  height: 100%;
+  display:flex;
+  width: 90%;
   align-items: center;
+  flex-direction: column;
 }
 
 header{
-  display: flex;
+  display:flex;;
+  flex-direction: column;
+  align-items:center;
+  width: 100%;
+  background-color: #ecece4;
+  border-bottom-style: solid;
+  border-width: thin;
+  margin-bottom: 10px;
+}
+
+nav{
+  display:flex;
   flex-direction: row;
-  justify-content: flex-start;
-  height:200px;
+  justify-content: space-around;
+  height: 20px;
   width:inherit;
   background-color: #ecece4;
 }
 
-@font-face {
-    font-family: sasquatchFont;
-    src: url('/Users/sarahdebey/dice-game/filmfonts_jurassic-park/Jurassic Park.ttf');
+section {
+  background-color: #ecece4;
+  margin: 5px auto;
 }
 
- nav{
-   display:flex;
-   flex-direction: row;
-   justify-content: space-around;
-   height: 50px;
-   width:inherit;
-   background-color: #ecece4;
-   margin-top: 20px;
- }
+/*section {
+  margin: 20px;
+  width: 100%;
+}*/
+
+img {
+  max-height: 50px;
+  max-width: 50px;
+  object-fit: scale-down;
+  border-style:solid;
+  border-width:medium;
+  margin: 5px;
+}
 
  a {
     text-decoration: none;
  }
+
+ .Name-Header{
+   width:100%;
+   height: 60px;
+   line-height: 20px;
+ }
+
  .Logo{
-   display: flex;
-   height:100%;
+   height:150px;
    width:150px;
    border: black solid thin;
-   margin-left: 25px;
+   position: absolute;
  }
  .Game-Name{
-   margin-left: 100px;
    font-family: sasquatchFont;
-   font-size: 200px;
-   font-weight: normal;
-   margin-top: 0px;
+   text-align: center;
+   vertical-align: middle;
  }
 
  .Sign-In {
-   background-color: #ecece4;
+   /*background-color: #ecece4;*/
  }
 
-section {
-  margin: 20px;
-  width: 100%;
-}
 
 #Log-In {
   display: block;
@@ -79,8 +104,6 @@ section {
   display: flex;
 }
 
-
-
 #Points-Container {
   display: none;
 }
@@ -88,7 +111,7 @@ section {
 .Score-Container {
   flex-direction: column;
   align-items: center;
-  background-color: #ecece4;
+  /*background-color: #ecece4;*/
 }
 
 .Table-Container {
@@ -101,7 +124,7 @@ section {
 }
 
 .Chart-Container {
-  background-color: #ecece4;
+  /*background-color: #ecece4;*/
   height: 400px;
 }
 
@@ -119,6 +142,8 @@ th, td {
 }
 
 footer{
+  border-top-style: solid;
+  border-width: thin;
   display: flex;
   flex-direction: row;
   justify-content: space-around;
