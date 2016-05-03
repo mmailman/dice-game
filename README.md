@@ -38,10 +38,6 @@ Who did what:
 * Sarah: navigator
 * Mike: driver
 
-Tasks completed:
-
-* Created function that handles the Keep-Rolling event and re-renders the necessary images
-* Added event listener to Keep-Rolling button
 
 Tasks completed:
 
@@ -52,3 +48,23 @@ Tasks completed:
 
 * Keiran: driver
 * Rafi: navigator
+
+Tasks completed:
+
+* Created function that handles the Keep-Rolling event and re-renders the necessary images
+* Added event listener to Keep-Rolling button
+
+Who did what:
+
+* Sarah: driver
+* Mike: navigator
+
+Tasks completed:
+
+* Added difficulty dropdown to HTML and start game button functionality to JS
+* Difficulty and gameplay buttons toggle between disabled and enabled with click event
+
+* Sarah: driver
+* Mike: navigator
+
+________________________________________________________
