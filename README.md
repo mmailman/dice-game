@@ -38,10 +38,6 @@ Who did what:
 * Sarah: navigator
 * Mike: driver
 
-Tasks completed:
-
-* Created function that handles the Keep-Rolling event and re-renders the necessary images
-* Added event listener to Keep-Rolling button
 
 Tasks completed:
 
@@ -52,3 +48,85 @@ Tasks completed:
 
 * Keiran: driver
 * Rafi: navigator
+
+Tasks completed:
+
+* Created function that handles the Keep-Rolling event and re-renders the necessary images
+* Added event listener to Keep-Rolling button
+
+Who did what:
+
+* Sarah: driver
+* Mike: navigator
+
+Tasks completed:
+
+* Added difficulty dropdown to HTML and start game button functionality to JS
+* Difficulty and gameplay buttons toggle between disabled and enabled with click event
+
+* Sarah: driver
+* Mike: navigator
+
+________________________________________________________
+Tasks completed:
+
+* created a function to account to populate the status bar with the current stats.
+* created a win/loss message in the image container
+* fixed a bug to clear the status bar and image container when starting a new game
+* made a new array to store difficulty and score for each round of the game
+
+Who did what:
+
+* Rafi: driver
+* Keiran: chief navigation officer
+
+Tasks completed:
+* Added background image.
+* Added custom font.
+* Added color scheme.
+
+Who did what:
+* Sarah: driver
+* Rafi: navigator
+
+Tasks completed:
+
+* Refactored HTML code on home and game page
+* Adjusted margins and paddings on elements to improve aesthetics
+* Adjusted color scheme and background image on game page
+
+Who did what:
+* Mike: driver
+* Sarah: navigator
+
+Tasks completed:
+
+* Added responsiveness to home and game pages
+* Made sticky footer
+* Uploaded custom font-family
+* Changed background-image
+
+Who did what:
+* Sarah: driver
+* Mike: navigator
+
+Task completed:
+
+* Added a function to count claws and determine mauling.
+* Render a message on Mauling in the Die-Title container.
+* Added disabling of the Keep Rolling button upon Mauling.
+
+Who did what:
+
+* Keiran: driver
+* Mike: navigator
+
+Tasks completed:
+
+* Added a function to count cameras and log round scores to scoreArray.
+* Added click handler/listener for the End-Turn button.
+* Modified the startRound function to check for and remove mauled message and re-enable the Keep Rolling button.
+
+Who did what:
+* Keiran: navigator
+* Mike: driver

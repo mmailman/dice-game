@@ -4,6 +4,15 @@
 var orangeDiceArray = [];
 var blueDiceArray = [];
 var grayDiceArray = [];
+var maxRounds = 0;
+var roundCount = 0;
+var maxMauls = 5;
+var photosToWin = 0;
+var mauledFlag = false;
+var scoreArray = [];
+var totalScore = 0;
+var scoreStorage = [];
+var difficultyStorage = [];
 
 //Generic die constructor
 function Die(maul, photo, footprint) {
@@ -87,13 +96,19 @@ Gray.prototype.roll = function() {
 
 //does the initial roll for a round.
 function startRound(){
+  var dieTitleContainer = document.getElementById('Die-Title');
   for(var die = 0; die < 4; die++){
     orangeDiceArray[die].roll();
     blueDiceArray[die].roll();
     grayDiceArray[die].roll();
   }
+  if(dieTitleContainer.children[1]){
+    dieTitleContainer.removeChild(dieTitleContainer.children[1]);
+    document.getElementById('Keep-Rolling').disabled = false;
+  }
   //call to render images to page
   renderDice();
+  countMaul();
 }
 
 //renders the dice pool
@@ -125,6 +140,72 @@ function renderDice(){
   }
 }
 
+//function to determine if player has been mauled.
+function countMaul() {
+  var clawCounter = 0;
+  for(var die = 0; die < 4; die++) {
+    if(orangeDiceArray[die].lastRoll === 'claw.png') {
+      clawCounter++;
+    }
+    if(grayDiceArray[die].lastRoll === 'claw.png') {
+      clawCounter++;
+    }
+    if(blueDiceArray[die].lastRoll === 'claw.png') {
+      clawCounter++;
+    }
+  }
+  if(clawCounter >= maxMauls) {
+    var maulMessage = document.createElement('p');
+    maulMessage.textContent = 'You\'ve been mauled by Sasquatch. Click End Turn to continue.';
+    document.getElementById('Die-Title').appendChild(maulMessage);
+    document.getElementById('Keep-Rolling').disabled = true;
+    mauledFlag = true;
+  }
+}
+
+//function to count cameras
+function countCamera(){
+  var cameraCounter = 0;
+  for(var die = 0; die < 4; die++){
+    if(orangeDiceArray[die].lastRoll === 'camera.png'){
+      cameraCounter++;
+    }
+    if(grayDiceArray[die].lastRoll === 'camera.png'){
+      cameraCounter++;
+    }
+    if(blueDiceArray[die].lastRoll === 'camera.png'){
+      cameraCounter++;
+    }
+  }
+  scoreArray.push(cameraCounter);
+}
+
+//Generating a total score from scoreArray
+function checkScore(){
+  totalScore = 0;
+  for(var i = 0; i < scoreArray.length; i++){
+    totalScore += scoreArray[i];
+  }
+}
+
+//function to render the score status in status board
+function renderScore(){
+  var getStatusDiv = document.getElementById('Render-Zone');
+  getStatusDiv.innerHTML = null;
+  var roundsRemaining = maxRounds - roundCount;
+  checkScore();
+  var postRounds = document.createElement('p');
+  postRounds.textContent = 'You have ' + roundsRemaining + ' rounds left.';
+  var postCurrentScore = document.createElement('p');
+  postCurrentScore.textContent = 'Your current score is: ' + totalScore;
+  var postScoreToWin = document.createElement('p');
+  postScoreToWin.textContent = 'Score needed to win: ' + photosToWin;
+  postCurrentScore.id = 'scoreText';
+  getStatusDiv.appendChild(postRounds);
+  getStatusDiv.appendChild(postCurrentScore);
+  getStatusDiv.appendChild(postScoreToWin);
+}
+
 //function that handles Keep-Rolling event
 function handleKeepRolling() {
   for (var die = 0; die < 4; die++) {
@@ -139,6 +220,91 @@ function handleKeepRolling() {
     }
   }
   renderDice();
+  countMaul();
 }
+
+//function that handles difficulty Selection and Game Start
+function handleDifficulty(event) {
+  roundCount = 0;
+  scoreArray = [];
+  var getStatusDiv = document.getElementById('Render-Zone');
+  getStatusDiv.innerHTML = null;
+  var clearImageAnimation = document.getElementById('imageAnimation');
+  clearImageAnimation.innerHTML = null;
+  event.preventDefault();
+  var difficultyForm = document.getElementsByClassName('difficulty-submission');
+  for (var i = 0; i < difficultyForm.length; i++) {
+    difficultyForm[i].disabled = true;
+    // console.log(difficultyForm[i]);
+  }
+  var difficultyChosen = document.getElementById('select-difficulty').value;
+  if (difficultyChosen === 'easy') {
+    maxRounds = 3;
+    photosToWin = 5;
+  } else if (difficultyChosen === 'medium') {
+    maxRounds = 3;
+    photosToWin = 7;
+  } else {
+    maxRounds = 2;
+    photosToWin = 7;
+  }
+  document.getElementById('End-Turn').disabled = false;
+  document.getElementById('Keep-Rolling').disabled = false;
+  startRound();
+}
+
+//function that handles End-Turn
+function handleEndTurn(){
+  roundCount++;
+  if(mauledFlag !== true){
+    countCamera();
+    //call the status board render function.
+  } else {
+    scoreArray.push(0);
+    mauledFlag = false;
+  }
+  // checkScore();
+  renderScore();
+  if(roundCount < maxRounds && totalScore < photosToWin){
+    startRound();
+  } else if(totalScore >= photosToWin){
+    document.getElementById('End-Turn').disabled = true;
+    document.getElementById('Keep-Rolling').disabled = true;
+    document.getElementById('scoreText').style.color = 'green';
+    var winText = document.createElement('p');
+    winText.textContent = 'Congratualations, you\'ve solved the mystery of Sasquatch!';
+    document.getElementById('imageAnimation').appendChild(winText);
+    var winningGif = document.createElement('img');
+    winningGif.src = '../images/sasquatchGif.gif';
+    document.getElementById('imageAnimation').appendChild(winningGif);
+    var difficultyForm = document.getElementsByClassName('difficulty-submission');
+    for (var i = 0; i < difficultyForm.length; i++) {
+      difficultyForm[i].disabled = false;
+    }
+    scoreStorage.push(scoreArray);
+    difficultyStorage.push(document.getElementById('select-difficulty').value);
+  } else{
+    document.getElementById('End-Turn').disabled = true;
+    document.getElementById('Keep-Rolling').disabled = true;
+    document.getElementById('scoreText').style.color = 'red';
+    var loseText = document.createElement('p');
+    loseText.textContent = 'Sorry, you\'ve been mauled to death. Please seek medical attention and try again later!';
+    document.getElementById('imageAnimation').appendChild(loseText);
+    var difficultyForm = document.getElementsByClassName('difficulty-submission');
+    for (var i = 0; i < difficultyForm.length; i++) {
+      difficultyForm[i].disabled = false;
+    }
+    scoreStorage.push(scoreArray);
+    difficultyStorage.push(document.getElementById('select-difficulty').value);
+
+  }
+}
+
+//adds event listener to submit button to choose difficulty
+document.getElementById('difficulty').addEventListener('submit', handleDifficulty);
+
 //adds event listener to Keep-Rolling button
 document.getElementById('Keep-Rolling').addEventListener('click', handleKeepRolling);
+
+//adds event listener to End-Turn button
+document.getElementById('End-Turn').addEventListener('click', handleEndTurn);

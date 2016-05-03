@@ -2,23 +2,37 @@
 <html>
   <head>
     <link href="../css/game.css" type="text/css" rel="stylesheet"></link>
+    <link href='https://fonts.googleapis.com/css?family=Shadows+Into+Light' rel='stylesheet' type='text/css'>
   </head>
 
   <body>
-    <main>
-      <header>
+    <header>
+      <div class="Name-Header">
         <img class="Logo"/>
         <h1 class="Game-Name">Find Sasquatch</h1>
-      </header>
-
+      </div>
       <nav>
         <a href="#">Home</a>
         <a href="#">Scores</a>
         <a href="#">About Team Sasquatch</a>
       </nav>
+    </header>
+
+    <main>
+      <section class="Username-And-Difficulty">
+        <form id="difficulty">
+          <label for="difficulty">Hi,<span id="username"></span> please select your difficulty.</label>
+          <select name="difficulty" class="difficulty-submission" id="select-difficulty">
+            <option value="easy">Easy</option>
+            <option value="medium">Medium</option>
+            <option value="hard">Hard</option>
+          </select>
+          <button type="submit" class="difficulty-submission">Start Game</button>
+        </form>
+      </section>
 
       <section class="Image-And-Rules">
-        <div class="Image-Animation">
+        <div class="Image-Animation" id="imageAnimation">
         </div>
         <div class="Rules">
           <h3>Rules</h3>
@@ -29,28 +43,32 @@
 
       <section class="Dice-And-Status">
         <div class="Die-Container">
-          <h3>Die Board</h3>
+          <div id="Die-Title">
+            <h3>Die Board</h3>
+          </div>
           <div class="Die-Row" id="orange-dice"></div>
           <div class="Die-Row" id="gray-dice"></div>
           <div class="Die-Row" id="blue-dice"></div>
           <div class="Button-Row">
-          <button id="End-Turn">End Turn</button>
-          <button id="Keep-Rolling">Keep Rolling</button>
+          <button id="End-Turn" disabled>End Turn</button>
+          <button id="Keep-Rolling" disabled>Keep Rolling</button>
           </div>
         </div>
         <div class="Status-Board">
           <h3>Status Board</h3>
           <ol class="Scores">
           </ol>
+          <div id="Render-Zone">
+          </div>
         </div>
       </section>
-
-      <footer>
-        <a href="#">Home</a>
-        <a href="#">Scores</a>
-        <a href="#">About Team Sasquatch</a>
-      </footer>
     </main>
+
+    <footer>
+      <a href="#">Home</a>
+      <a href="#">Scores</a>
+      <a href="#">About Team Sasquatch</a>
+    </footer>
     <script type="text/javascript" src="../js/game.js"></script>
   </body>
 

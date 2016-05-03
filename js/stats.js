@@ -31,7 +31,7 @@ function handleCreateUser(event) {
   welcomeContainer.style.display = 'flex';
   pointsContainer.style.display = 'flex';
   graphContainer.style.display = 'flex';
-  logIn.style.display ='none';
+  logIn.style.display = 'none';
   var newUser = new User(userNameValue);
   userArray.push(newUser);
   event.target.newUserName.value = null;
