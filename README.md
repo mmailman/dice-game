@@ -93,3 +93,14 @@ Taks completed:
 Who did what:
 * Keiran: navigator
 * Mike: driver
+
+Tasks completed:
+
+* Added color scheme to homepage and changed background colors for sections
+* Added background image to homepage
+* Added custom font to title of homepage
+* Worked on spacing and margins of page divs and sections
+
+Who did what:
+* Sarah: driver
+* Rafi: navigator
