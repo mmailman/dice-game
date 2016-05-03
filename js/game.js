@@ -8,6 +8,7 @@ var maxRounds = 0;
 var roundCount = 0;
 var maxMauls = 5;
 var photosToWin = 0;
+var mauledFlag = false;
 
 //Generic die constructor
 function Die(maul, photo, footprint) {
@@ -98,6 +99,7 @@ function startRound(){
   }
   //call to render images to page
   renderDice();
+  countMaul();
 }
 
 //renders the dice pool
@@ -129,6 +131,28 @@ function renderDice(){
   }
 }
 
+function countMaul() {
+  var clawCounter = 0;
+  for(var die = 0; die < 4; die++) {
+    if(orangeDiceArray[die].lastRoll === 'claw.png') {
+      clawCounter++;
+    }
+    if(grayDiceArray[die].lastRoll === 'claw.png') {
+      clawCounter++;
+    }
+    if(blueDiceArray[die].lastRoll === 'claw.png') {
+      clawCounter++;
+    }
+  }
+  if(clawCounter >= maxMauls) {
+    var maulMessage = document.createElement('p');
+    maulMessage.textContent = 'You\'ve been mauled by Sasquatch. Click End Turn to continue.'
+    document.getElementById('Die-Title').appendChild(maulMessage);
+    document.getElementById('Keep-Rolling').disabled = true;
+    mauledFlag = true;
+  }
+}
+
 //function that handles Keep-Rolling event
 function handleKeepRolling() {
   for (var die = 0; die < 4; die++) {
@@ -143,6 +167,7 @@ function handleKeepRolling() {
     }
   }
   renderDice();
+  countMaul();
 }
 
 // var maxRounds = 0;
@@ -171,6 +196,7 @@ function handleDifficulty(event) {
   document.getElementById('End-Turn').disabled = false;
   document.getElementById('Keep-Rolling').disabled = false;
 }
+
 
 //adds event listener to submit button to choose difficulty
 document.getElementById('difficulty').addEventListener('submit', handleDifficulty);
