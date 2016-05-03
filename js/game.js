@@ -9,6 +9,7 @@ var roundCount = 0;
 var maxMauls = 5;
 var photosToWin = 0;
 var mauledFlag = false;
+var scoreArray = [];
 
 //Generic die constructor
 function Die(maul, photo, footprint) {
@@ -92,10 +93,15 @@ Gray.prototype.roll = function() {
 
 //does the initial roll for a round.
 function startRound(){
+  var dieTitleContainer = document.getElementById('Die-Title');
   for(var die = 0; die < 4; die++){
     orangeDiceArray[die].roll();
     blueDiceArray[die].roll();
     grayDiceArray[die].roll();
+  }
+  if(dieTitleContainer.children[1]){
+    dieTitleContainer.removeChild(dieTitleContainer.children[1]);
+    document.getElementById('Keep-Rolling').disabled = false;
   }
   //call to render images to page
   renderDice();
@@ -131,6 +137,7 @@ function renderDice(){
   }
 }
 
+//function to determine if player has been mauled.
 function countMaul() {
   var clawCounter = 0;
   for(var die = 0; die < 4; die++) {
@@ -146,11 +153,28 @@ function countMaul() {
   }
   if(clawCounter >= maxMauls) {
     var maulMessage = document.createElement('p');
-    maulMessage.textContent = 'You\'ve been mauled by Sasquatch. Click End Turn to continue.'
+    maulMessage.textContent = 'You\'ve been mauled by Sasquatch. Click End Turn to continue.';
     document.getElementById('Die-Title').appendChild(maulMessage);
     document.getElementById('Keep-Rolling').disabled = true;
     mauledFlag = true;
   }
+}
+
+//function to count cameras
+function countCamera(){
+  var cameraCounter = 0;
+  for(var die = 0; die < 4; die++){
+    if(orangeDiceArray[die].lastRoll === 'camera.png'){
+      cameraCounter++;
+    }
+    if(grayDiceArray[die].lastRoll === 'camera.png'){
+      cameraCounter++;
+    }
+    if(blueDiceArray[die].lastRoll === 'camera.png'){
+      cameraCounter++;
+    }
+  }
+  scoreArray.push(cameraCounter);
 }
 
 //function that handles Keep-Rolling event
@@ -170,10 +194,7 @@ function handleKeepRolling() {
   countMaul();
 }
 
-// var maxRounds = 0;
-// var roundCount = 0;
-// var maxMauls = 5;
-// var photosToWin = 0;
+//function that handles difficulty Selection and Game Start
 function handleDifficulty(event) {
   event.preventDefault();
   var difficultyForm = document.getElementsByClassName('difficulty-submission');
@@ -197,9 +218,27 @@ function handleDifficulty(event) {
   document.getElementById('Keep-Rolling').disabled = false;
 }
 
+//function that handles End-Turn
+function handleEndTurn(){
+  if(mauledFlag !== true){
+    countCamera();
+    //call the status board render function.
+  } else {
+    scoreArray.push(0);
+    mauledFlag = false;
+  }
+  if(roundCount < maxRounds){
+    startRound();
+  }else{
+    // Trigger End game logic
+  }
+}
 
 //adds event listener to submit button to choose difficulty
 document.getElementById('difficulty').addEventListener('submit', handleDifficulty);
 
 //adds event listener to Keep-Rolling button
 document.getElementById('Keep-Rolling').addEventListener('click', handleKeepRolling);
+
+//adds event listener to End-Turn button
+document.getElementById('End-Turn').addEventListener('click', handleEndTurn);
