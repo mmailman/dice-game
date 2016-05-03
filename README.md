@@ -130,3 +130,11 @@ Tasks completed:
 Who did what:
 * Keiran: navigator
 * Mike: driver
+
+
+Tasks completed:
+
+* Added local storage for scores and difficulties
+
+* Keiran: driver
+* Rafi: navigator

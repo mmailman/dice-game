@@ -12,6 +12,8 @@ var userArray = [];
 
 function User(userName) {
   this.userName = userName;
+  this.scores = [];
+  this.difficulties = [];
 }
 
 
