@@ -1,108 +1,70 @@
+@font-face {
+  font-family: sasquatchFont;
+  src: url('../filmfonts_jurassic-park/jurassic_park.ttf');
+}
+
 body {
-  background-image: url('../images/diceforest3.jpeg');
+  display:flex;
+  position: absolute;
+  flex-wrap: wrap;
+  min-height: 100%;
+  width: 100%;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 auto;
+  padding: 0;
+  background-image: url('../images/shady-forest.jpg');
 }
 
 main {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  height: 100%;
+  margin-top: 50px;
+  display:flex;
+  width: 90%;
   align-items: center;
+  flex-direction: column;
 }
 
 header{
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  height:200px;
-  width:inherit;
-  background-color: #ecece4;
-}
-
-@font-face {
-    font-family: sasquatchFont;
-    src: url('/Users/sarahdebey/dice-game/filmfonts_jurassic-park/Jurassic Park.ttf');
-}
-
- nav{
-   display:flex;
-   flex-direction: row;
-   justify-content: space-around;
-   height: 50px;
-   width:inherit;
-   background-color: #ecece4;
-   margin-top: 20px;
- }
-
- a {
-    text-decoration: none;
- }
- .Logo{
-   display: flex;
-   height:100%;
-   width:150px;
-   border: black solid thin;
-   margin-left: 25px;
- }
- .Game-Name{
-   margin-left: 100px;
-   font-family: sasquatchFont;
-   font-size: 200px;
-   font-weight: normal;
-   margin-top: 0px;
- }
-
- .Sign-In {
-   background-color: #ecece4;
- }
-
-section {
-  margin: 20px;
+  display:flex;
+  position: relative;
+  flex-direction: column;
+  align-items:center;
   width: 100%;
+  background-color: #ecece4;
+  opacity: .9;
+  border-bottom-style: solid;
+  border-width: thin;
 }
 
-#Log-In {
-  display: block;
-}
-
-#Welcome-Container {
-  display: none;
-}
-
-.Form-Content {
-  display: flex;
+nav{
+  display:flex;
   flex-direction: row;
   justify-content: space-around;
-}
-
-.Difficulty-Container {
-  display: flex;
-}
-
-
-
-#Points-Container {
-  display: none;
-}
-
-.Score-Container {
-  flex-direction: column;
-  align-items: center;
+  height: 20px;
+  width:inherit;
   background-color: #ecece4;
+  opacity: .9;
+  margin-bottom: 5px;
 }
 
-.Table-Container {
-  display: flex;
-  flex-direction: row;
-}
-
-#Graph-Container {
-  display:none;
-}
-
-.Chart-Container {
+section {
   background-color: #ecece4;
-  height: 400px;
+  opacity: .9;
+  margin: 5px auto;
+}
+
+/*section {
+  margin: 20px;
+  width: 100%;
+}*/
+
+img {
+  max-height: 50px;
+  max-width: 50px;
+  object-fit: scale-down;
+  border-style:solid;
+  border-width:medium;
+  margin: 5px;
 }
 
 table {
@@ -118,11 +80,97 @@ th, td {
   width: 150px;
 }
 
-footer{
+footer {
+  position: relative;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  border-top-style: solid;
+  border-width: thin;
   display: flex;
   flex-direction: row;
   justify-content: space-around;
-  align-items: baseline;
   width: inherit;
   background-color: #ecece4;
+  opacity: .9;
+  height: 40px;
+  margin-top: 50px;
+  padding-top: 15px;
+}
+ a {
+    text-decoration: none;
+    color: black;
+    font-family: 'Shadows Into Light', cursive;
+    font-size: 20px;
+
+ }
+
+a:hover {
+  color: green;
+}
+
+ .Name-Header{
+   width:100%;
+   height: 60px;
+   line-height: 20px;
+ }
+
+ .Logo{
+   height:150px;
+   width:150px;
+   border: black solid thin;
+   position: absolute;
+ }
+ .Game-Name{
+   font-family: sasquatchFont;
+   text-align: center;
+   vertical-align: middle;
+ }
+
+ .Sign-In {
+   /*background-color: #ecece4;*/
+ }
+
+
+
+.Form-Content {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.Difficulty-Container {
+  display: flex;
+}
+
+.Score-Container {
+  flex-direction: column;
+  align-items: center;
+  /*background-color: #ecece4;*/
+}
+
+.Table-Container {
+  display: flex;
+  flex-direction: row;
+}
+
+.Chart-Container {
+  /*background-color: #ecece4;*/
+  height: 400px;
+}
+
+#Log-In {
+  display: block;
+}
+
+#Welcome-Container {
+  display: none;
+}
+
+#Points-Container {
+  display: none;
+}
+
+#Graph-Container {
+  display:none;
 }

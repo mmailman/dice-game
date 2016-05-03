@@ -3,21 +3,23 @@
 
 <head>
   <link href="../css/stats.css" type="text/css" rel="stylesheet"></link>
+  <link href='https://fonts.googleapis.com/css?family=Shadows+Into+Light' rel='stylesheet' type='text/css'>
 </head>
 
 <body>
-  <main>
-    <header>
+  <header>
+    <div class="Name-Header">
       <img class="Logo"/>
       <h1 class="Game-Name">Find Sasquatch</h1>
-    </header>
-
+    </div>
     <nav>
       <a href="#">Home</a>
       <a href="#">Scores</a>
       <a href="#">About Team Sasquatch</a>
     </nav>
+  </header>
 
+  <main>
     <section class="Sign-In" id="Log-In">
       <form id="saveUserName">
         <fieldset>
@@ -26,14 +28,6 @@
               <label for="newUserName">Enter Username:</label>
               <input name="newUserName" type="text" required/>
             </div>
-            <!-- <div class="Difficulty-Container">
-              <legend>Select Difficulty:</legend>
-              <select name="difficulty">
-                <option value="easy">Easy</option>
-                <option value="medium">Medium</option>
-                <option value="hard">Hard</option>
-              </select>
-            </div> -->
             <button type="submit">Save Username</button>
           </div>
         </fieldset>
@@ -80,14 +74,14 @@
     <section class="Chart-Container" id="Graph-Container">
       <!-- <canvas></canvas> -->
     </section>
-
-    <footer>
-      <a href="#">Home</a>
-      <a href="#">Scores</a>
-      <a href="#">About Team Sasquatch</a>
-    </footer>
   </main>
+
+  <footer>
+    <a href="#">Home</a>
+    <a href="#">Scores</a>
+    <a href="#">About Team Sasquatch</a>
+  </footer>
+
   <script src="../js/stats.js"></script>
 </body>
-
 </html>
