@@ -138,3 +138,27 @@ function populateScoreTable() {
     };
   }
 }
+
+var easyTopScores = [];
+var mediumTopScores = [];
+var hardTopScores = [];
+function renderCharts() {
+  var canvasElEasy = document.getElementById('easy-canvas').getContext('2d');
+  var canvasElMedium = document.getElementById('medium-canvas').getContext('2d');
+  var canvasElHard = document.getElementById('hard-canvas').getContext('2d');
+  // var difficultyLabel = ['Easy', 'Medium', 'Hard'];
+  for (var i = 0; i < 3; i++) {
+    // easyTopScores.push(easyScores[i].score);
+    mediumTopScores.push(mediumScores[i].score);
+    // hardTopScores.push(hardScores[i].score);
+    easyTopScores.push(mediumScores[i].userName);
+  };
+  var mediumData = {
+    labels: easyTopScores,
+    datasets: [{label: 'Score', backgroundColor: 'blue', borderColor: 'black', borderWidth: 2, data: mediumTopScores}]
+  };
+  var mediumChart = new Chart(canvasElMedium, {
+    type: 'bar',
+    data: mediumData
+  });
+}
