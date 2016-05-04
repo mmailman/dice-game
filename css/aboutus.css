@@ -1,6 +1,5 @@
 img {
-  max-width: 210px;
-  max-height: 210px;
+  max-width: 150px;
   object-fit: scale-down;
 }
 

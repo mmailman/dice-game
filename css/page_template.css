@@ -20,7 +20,7 @@ body {
 main{
   margin-top: 50px;
   display:flex;
-  width: 90%;
+  width: 80%;
   align-items: center;
   flex-direction: column;
 }
@@ -46,7 +46,8 @@ header{
    width:inherit;
    background-color: #ecece4;
    opacity: .9;
-   margin-bottom: 5px;
+   margin-top: 10px;
+   margin-bottom: 20px;
  }
 
  section {
