@@ -10,10 +10,19 @@ var maxMauls = 5;
 var photosToWin = 0;
 var mauledFlag = false;
 var scoreArray = [];
+var gameArray = [];
 var totalScore = 0;
-var scoreStorage = [];
-var difficultyStorage = [];
 var updateUser = new User();
+
+function ThisGame(userName, score, difficulty) {
+  this.userName = userName;
+  this.score = score;
+  this.difficulty = difficulty;
+}
+
+function User() {
+  this.userName = '';
+}
 
 //Generic die constructor
 function Die(maul, photo, footprint) {
@@ -282,9 +291,9 @@ function handleEndTurn(){
     for (var i = 0; i < difficultyForm.length; i++) {
       difficultyForm[i].disabled = false;
     }
-    updateUser.scores.push(scoreArray);
-    updateUser.difficulties.push(document.getElementById('select-difficulty').value);
-    localStorage.setItem('currentUser', JSON.stringify(updateUser));
+    var newGameObject = new ThisGame(updateUser.userName, totalScore, document.getElementById('select-difficulty').value);
+    gameArray.push(newGameObject);
+    localStorage.setItem('gameArray', JSON.stringify(gameArray));
   } else{
     document.getElementById('End-Turn').disabled = true;
     document.getElementById('Keep-Rolling').disabled = true;
@@ -296,28 +305,30 @@ function handleEndTurn(){
     for (var i = 0; i < difficultyForm.length; i++) {
       difficultyForm[i].disabled = false;
     }
-    updateUser.scores.push(scoreArray);
-    updateUser.difficulties.push(document.getElementById('select-difficulty').value);
-    localStorage.setItem('currentUser', JSON.stringify(updateUser));
+    var newGameObject = new ThisGame(updateUser.userName, totalScore, document.getElementById('select-difficulty').value);
+    gameArray.push(newGameObject);
+    localStorage.setItem('gameArray', JSON.stringify(gameArray));
   }
 }
 
-function User() {
-  this.userName = '';
-  this.scores = [];
-  this.difficulties = [];
-}
 
 // Iffy to check local storage for game data
 (function checkLocal() {
+  if(localStorage.getItem('gameArray')) {
+    console.log('Local storage exists for game array');
+    var parsedGameArray = JSON.parse(localStorage.getItem('gameArray'));
+    gameArray = parsedGameArray;
+  } else {
+    console.log('Local storage does not exist for game array');
+  }
   if(localStorage.getItem('currentUser')) {
     console.log('Local storage exists for current user');
     var parsedUser = JSON.parse(localStorage.getItem('currentUser'));
-    updateUser.userName = parsedUser.userName;
-    updateUser.scores = parsedUser.scores;
-    updateUser.difficulties = parsedUser.difficulties;
+    updateUser = parsedUser;
   } else {
-    console.log('local storage does not exist');
+    console.log('local storage does not exist for current user');
+    alert('You must be logged in to play. Please create a username on our home page.')
+    location.assign('stats.html');
   }
 })();
 
