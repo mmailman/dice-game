@@ -16,6 +16,21 @@ function User(userName) {
   this.difficulties = [];
 }
 
+// Iffy to check local storage for game data
+(function checkLocal() {
+  if(localStorage.getItem('currentUser')) {
+    console.log('Local storage exists for current user');
+    var parsedUser = JSON.parse(localStorage.getItem('currentUser'));
+    for (var i = 0; i < userArray.length; i ++){
+      if( userArray[i].userName === parsedUser.userName){
+        userArray[i].scores = parsedUser.scores;
+        userArray[i].difficulties = parsedUser.difficulties;
+      }
+    }
+  } else {
+    console.log('local storage does not exist');
+  }
+})();
 
 function handleChangeUsers(event) {
   welcomeContainer.removeChild(welcome);
@@ -35,6 +50,7 @@ function handleCreateUser(event) {
   graphContainer.style.display = 'flex';
   logIn.style.display = 'none';
   var newUser = new User(userNameValue);
+  localStorage.setItem('currentUser', JSON.stringify(newUser));
   userArray.push(newUser);
   event.target.newUserName.value = null;
 }

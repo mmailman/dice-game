@@ -13,6 +13,7 @@ var scoreArray = [];
 var totalScore = 0;
 var scoreStorage = [];
 var difficultyStorage = [];
+var updateUser = new User();
 
 //Generic die constructor
 function Die(maul, photo, footprint) {
@@ -281,11 +282,9 @@ function handleEndTurn(){
     for (var i = 0; i < difficultyForm.length; i++) {
       difficultyForm[i].disabled = false;
     }
-    scoreStorage.push(scoreArray);
-    difficultyStorage.push(document.getElementById('select-difficulty').value);
-    localStorage.clear();
-    localStorage.setItem('Scores', JSON.stringify(scoreStorage));
-    localStorage.setItem('Difficulties', JSON.stringify(difficultyStorage));
+    updateUser.scores.push(scoreArray);
+    updateUser.difficulties.push(document.getElementById('select-difficulty').value);
+    localStorage.setItem('currentUser', JSON.stringify(updateUser));
   } else{
     document.getElementById('End-Turn').disabled = true;
     document.getElementById('Keep-Rolling').disabled = true;
@@ -297,20 +296,26 @@ function handleEndTurn(){
     for (var i = 0; i < difficultyForm.length; i++) {
       difficultyForm[i].disabled = false;
     }
-    scoreStorage.push(scoreArray);
-    difficultyStorage.push(document.getElementById('select-difficulty').value);
-    localStorage.setItem('Scores', JSON.stringify(scoreStorage));
-    localStorage.setItem('Difficulties', JSON.stringify(difficultyStorage));
+    updateUser.scores.push(scoreArray);
+    updateUser.difficulties.push(document.getElementById('select-difficulty').value);
+    localStorage.setItem('currentUser', JSON.stringify(updateUser));
   }
 }
+
+function User() {
+  this.userName = '';
+  this.scores = [];
+  this.difficulties = [];
+}
+
 // Iffy to check local storage for game data
 (function checkLocal() {
-  if(localStorage.getItem('Scores') && localStorage.getItem('Difficulties')) {
-    console.log('Local storage exists for scores & difficulties');
-    var parsedScores = JSON.parse(localStorage.getItem('Scores'));
-    var parsedDifficulties = JSON.parse(localStorage.getItem('Difficulties'));
-    difficultyStorage = parsedDifficulties;
-    scoreStorage = parsedScores;
+  if(localStorage.getItem('currentUser')) {
+    console.log('Local storage exists for current user');
+    var parsedUser = JSON.parse(localStorage.getItem('currentUser'));
+    updateUser.userName = parsedUser.userName;
+    updateUser.scores = parsedUser.scores;
+    updateUser.difficulties = parsedUser.difficulties;
   } else {
     console.log('local storage does not exist');
   }
