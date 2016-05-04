@@ -7,6 +7,8 @@
   <link href="css/stats.css" type="text/css" rel="stylesheet"></link>
   <link href='https://fonts.googleapis.com/css?family=Shadows+Into+Light' rel='stylesheet' type='text/css'>
   <link href='https://fonts.googleapis.com/css?family=Creepster' rel='stylesheet' type='text/css'>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.0.1/Chart.min.js"></script>
+  <!-- <script src = 'js/chart.js'></script> -->
   <title>Dashboard</title>
 </head>
 
@@ -44,7 +46,7 @@
 
     <section class="Score-Container" id="Points-Container">
       <div class="Table-Container">
-        <table>
+        <table id='easy-table'>
           <tr>
             <th colspan="2">Easy</th>
           </tr>
@@ -53,7 +55,7 @@
             <th>Score</th>
           </tr>
         </table>
-        <table>
+        <table id='medium-table'>
           <tr>
             <th colspan="2">Medium</th>
           </tr>
@@ -62,7 +64,7 @@
             <th>Score</th>
           </tr>
         </table>
-        <table>
+        <table id='hard-table'>
           <tr>
             <th colspan="2">Hard</th>
           </tr>
@@ -76,7 +78,9 @@
     </section>
 
     <section class="Chart-Container" id="Graph-Container">
-      <!-- <canvas></canvas> -->
+      <canvas id="easy-canvas"></canvas>
+      <canvas id="medium-canvas"></canvas>
+      <canvas id="hard-canvas"></canvas>
     </section>
   </main>
 
