@@ -282,7 +282,7 @@ function handleEndTurn(){
     document.getElementById('Keep-Rolling').disabled = true;
     document.getElementById('scoreText').style.color = 'green';
     var winText = document.createElement('p');
-    winText.textContent = 'Congratualations, you\'ve solved the mystery of Sasquatch!';
+    winText.textContent = 'Congratulations, you\'ve solved the mystery of Sasquatch!';
     document.getElementById('imageAnimation').appendChild(winText);
     var winningGif = document.createElement('img');
     winningGif.src = '../images/sasquatchGif.gif';

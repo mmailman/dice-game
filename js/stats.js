@@ -55,8 +55,9 @@ function handleCreateUser(event) {
     console.log('Local storage for game array exists');
     var parsedGameArray = JSON.parse(localStorage.getItem('gameArray'));
     gameArray = parsedGameArray;
+    populateScoreTable();
   } else {
-    console.log('Local storage does not exist for game Array')
+    console.log('Local storage does not exist for game Array');
   }
   if(localStorage.getItem('currentUser')) {
     console.log('Local storage exists for current user');
@@ -74,3 +75,66 @@ function handleCreateUser(event) {
 
 saveUserName.addEventListener('submit', handleCreateUser);
 changeUser.addEventListener('click', handleChangeUsers);
+
+//sorts gameArray into three separate arrays by difficulty
+function sortGameArray() {
+  for (var i = 0; i < gameArray.length; i++) {
+    if (gameArray[i].difficulty === 'easy') {
+      easyScores.push(gameArray[i]);
+    } else if (gameArray[i].difficulty === 'medium') {
+      mediumScores.push(gameArray[i]);
+    } else {
+      hardScores.push(gameArray[i]);
+    }
+  }
+}
+
+function sortByScore(array) {
+  array.sort(function(a,b) {
+    return b.score - a.score;
+  });
+}
+
+function populateScoreTable() {
+  sortGameArray();
+  sortByScore(easyScores);
+  sortByScore(mediumScores);
+  sortByScore(hardScores);
+  for (var i = 0; i < 3; i++) {
+    if (easyScores[i]) {
+      var easyRow = document.createElement('tr');
+      var easyDataName = document.createElement('td');
+      easyDataName.textContent = easyScores[i].userName;
+      var easyDataScore = document.createElement('td');
+      easyDataScore.textContent = easyScores[i].score;
+      var easyParent = document.getElementById('easy-table');
+      easyParent.appendChild(easyRow);
+      easyRow.appendChild(easyDataName);
+      easyRow.appendChild(easyDataScore);
+    };
+
+    if (mediumScores[i]) {
+      var mediumRow = document.createElement('tr');
+      var mediumDataName = document.createElement('td');
+      mediumDataName.textContent = mediumScores[i].userName;
+      var mediumDataScore = document.createElement('td');
+      mediumDataScore.textContent = mediumScores[i].score;
+      var mediumParent = document.getElementById('medium-table');
+      mediumParent.appendChild(mediumRow);
+      mediumRow.appendChild(mediumDataName);
+      mediumRow.appendChild(mediumDataScore);
+    };
+
+    if (hardScores[i]) {
+      var hardRow = document.createElement('tr');
+      var hardDataName = document.createElement('td');
+      hardDataName.textContent = hardScores[i].userName;
+      var hardDataScore = document.createElement('td');
+      hardDataScore.textContent = hardScores[i].score;
+      var hardParent = document.getElementById('hard-table');
+      hardParent.appendChild(hardRow);
+      hardRow.appendChild(hardDataName);
+      hardRow.appendChild(hardDataScore);
+    };
+  }
+}
