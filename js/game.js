@@ -119,6 +119,7 @@ function startRound(){
   //call to render images to page
   renderDice();
   countMaul();
+  renderScore();
 }
 
 //renders the dice pool
@@ -202,7 +203,7 @@ function checkScore(){
 function renderScore(){
   var getStatusDiv = document.getElementById('Render-Zone');
   getStatusDiv.innerHTML = null;
-  var roundsRemaining = maxRounds - roundCount;
+  var roundsRemaining = (maxRounds - roundCount) - 1;
   checkScore();
   var postRounds = document.createElement('p');
   postRounds.textContent = 'You have ' + roundsRemaining + ' rounds left.';
@@ -238,16 +239,16 @@ function handleDifficulty(event) {
   roundCount = 0;
   scoreArray = [];
   var getStatusDiv = document.getElementById('Render-Zone');
-  getStatusDiv.innerHTML = null;
   var clearImageAnimation = document.getElementById('imageAnimation');
+  var difficultyForm = document.getElementsByClassName('difficulty-submission');
+  var difficultyChosen = document.getElementById('select-difficulty').value;
+  getStatusDiv.innerHTML = null;
   clearImageAnimation.innerHTML = null;
   event.preventDefault();
-  var difficultyForm = document.getElementsByClassName('difficulty-submission');
   for (var i = 0; i < difficultyForm.length; i++) {
     difficultyForm[i].disabled = true;
     // console.log(difficultyForm[i]);
   }
-  var difficultyChosen = document.getElementById('select-difficulty').value;
   if (difficultyChosen === 'easy') {
     maxRounds = 3;
     photosToWin = 5;
@@ -258,6 +259,7 @@ function handleDifficulty(event) {
     maxRounds = 2;
     photosToWin = 7;
   }
+  document.getElementById('Dice-And-Status').hidden = false;
   document.getElementById('End-Turn').disabled = false;
   document.getElementById('Keep-Rolling').disabled = false;
   startRound();
@@ -275,42 +277,45 @@ function handleEndTurn(){
   }
   // checkScore();
   renderScore();
+  var winText = document.createElement('p');
+  var outcomeGif = document.createElement('img');
+  var difficultyForm = document.getElementsByClassName('difficulty-submission');
+  var newGameObject = new ThisGame(updateUser.userName, totalScore, document.getElementById('select-difficulty').value);
+  var loseText = document.createElement('p');
+  var difficultyForm = document.getElementsByClassName('difficulty-submission');
+  var newGameObject = new ThisGame(updateUser.userName, totalScore, document.getElementById('select-difficulty').value);
+
+
   if(roundCount < maxRounds && totalScore < photosToWin){
     startRound();
   } else if(totalScore >= photosToWin){
     document.getElementById('End-Turn').disabled = true;
     document.getElementById('Keep-Rolling').disabled = true;
     document.getElementById('scoreText').style.color = 'green';
-    var winText = document.createElement('p');
     winText.textContent = 'Congratualations, you\'ve solved the mystery of Sasquatch!';
     document.getElementById('imageAnimation').appendChild(winText);
-    var winningGif = document.createElement('img');
-    winningGif.src = '../images/sasquatchGif.gif';
-    document.getElementById('imageAnimation').appendChild(winningGif);
-    var difficultyForm = document.getElementsByClassName('difficulty-submission');
+    outcomeGif.src = '../images/sasquatchGif.gif';
+    document.getElementById('imageAnimation').appendChild(outcomeGif);
     for (var i = 0; i < difficultyForm.length; i++) {
       difficultyForm[i].disabled = false;
     }
-    var newGameObject = new ThisGame(updateUser.userName, totalScore, document.getElementById('select-difficulty').value);
     gameArray.push(newGameObject);
     localStorage.setItem('gameArray', JSON.stringify(gameArray));
   } else{
     document.getElementById('End-Turn').disabled = true;
     document.getElementById('Keep-Rolling').disabled = true;
     document.getElementById('scoreText').style.color = 'red';
-    var loseText = document.createElement('p');
     loseText.textContent = 'Sorry, you\'ve been mauled to death. Please seek medical attention and try again later!';
     document.getElementById('imageAnimation').appendChild(loseText);
-    var difficultyForm = document.getElementsByClassName('difficulty-submission');
+    outcomeGif.src = '../images/sasquatchmaul.gif';
+    document.getElementById('imageAnimation').appendChild(outcomeGif);
     for (var i = 0; i < difficultyForm.length; i++) {
       difficultyForm[i].disabled = false;
     }
-    var newGameObject = new ThisGame(updateUser.userName, totalScore, document.getElementById('select-difficulty').value);
     gameArray.push(newGameObject);
     localStorage.setItem('gameArray', JSON.stringify(gameArray));
   }
 }
-
 
 // Iffy to check local storage for game data
 (function checkLocal() {
@@ -327,7 +332,7 @@ function handleEndTurn(){
     updateUser = parsedUser;
   } else {
     console.log('local storage does not exist for current user');
-    alert('You must be logged in to play. Please create a username on our home page.')
+    alert('You must be logged in to play. Please create a username on our home page.');
     location.assign('stats.html');
   }
 })();
