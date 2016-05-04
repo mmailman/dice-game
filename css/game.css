@@ -2,7 +2,7 @@
   text-indent: 1.5em;
 }
 
-.Rules > p{
+.Rules > p {
   text-indent: 1.5em;
   text-align: left;
 }
@@ -13,11 +13,12 @@
   align-items: center;
   min-height: 50px;
   min-width: 30%;
-  border: solid black thin;
 }
 
-.Die-Container{
-  border: solid black thin;
+.Image-Animation > img{
+  margin-top: 10px;
+  width: 300px;
+  object-fit: scale-down;
 }
 
 .Die-Row > img {
@@ -31,7 +32,6 @@
 
  .Status-Board{
    text-align: center;
-   border: solid black thin;
    width: 60%;
    min-height: 200px;
  }
@@ -63,6 +63,7 @@
    text-align: center;
    height: 50px;
  }
+
 
 #difficulty {
   margin-top: 10px;

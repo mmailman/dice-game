@@ -1,20 +1,27 @@
 img {
-  max-width: 210px;
-  max-height: 210px;
+  max-width: 150px;
   object-fit: scale-down;
 }
 
 p {
   margin-right: 30px;
+  text-indent: 1.5em;
+}
+
+h1{
+  margin-bottom: 0px;
+  margin-top: 12px;
 }
 
 .people {
   display: flex;
+  flex-wrap:wrap;
   flex-direction: row;
   justify-content: space-between;
 }
 
 .picture {
+  max-width: 30%;
   margin: 20px 20px 20px 40px;
 }
 
@@ -22,6 +29,7 @@ p {
   display: flex;
   flex-direction: column;
   margin-left: 40px;
+  max-width: 60%;
 }
 
 .our-names {
