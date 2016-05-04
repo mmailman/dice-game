@@ -29,6 +29,8 @@ th, td {
 }
 
 .Chart-Container {
+  display: flex;
+  justify-content: space-around;
   height: 400px;
 }
 
@@ -46,4 +48,9 @@ th, td {
 
 #Graph-Container {
   display:none;
+}
+
+canvas {
+  max-width: 30%;
+  max-height: 50%;
 }
