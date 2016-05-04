@@ -61,12 +61,12 @@ function handleCreateUser(event) {
   if(localStorage.getItem('currentUser')) {
     console.log('Local storage exists for current user');
     var parsedUser = JSON.parse(localStorage.getItem('currentUser'));
-    for (var i = 0; i < userArray.length; i ++){
-      if( userArray[i].userName === parsedUser.userName){
-        userArray[i].scores = parsedUser.scores;
-        userArray[i].difficulties = parsedUser.difficulties;
-      }
-    }
+    welcome.textContent = 'Welcome ' + parsedUser.userName;
+    welcomeContainer.appendChild(welcome);
+    welcomeContainer.style.display = 'flex';
+    pointsContainer.style.display = 'flex';
+    graphContainer.style.display = 'flex';
+    logIn.style.display = 'none';
   } else {
     console.log('local storage does not exist for current User');
   }
