@@ -57,7 +57,6 @@ function displayWelcome() {
   welcomeContainer.appendChild(welcome);
   welcomeContainer.style.display = 'flex';
   pointsContainer.style.display = 'flex';
-  graphContainer.style.display = 'flex';
   logIn.style.display = 'none';
 }
 
@@ -220,6 +219,16 @@ function handleCreateUser(event) {
   document.getElementById('footer').style.display = 'flex';
 }
 
+function handleToggle(event){
+  if(event.target.id === 'Toggle-Chart'){
+    pointsContainer.style.display = 'none';
+    graphContainer.style.display = 'flex';
+  } else if(event.target.id === 'Toggle-Table'){
+    graphContainer.style.display = 'none';
+    pointsContainer.style.display = 'flex';
+  }
+}
+
 // Iffy to check local storage for game data
 (function checkLocal() {
   if(localStorage.getItem('gameArray')) {
@@ -245,3 +254,6 @@ function handleCreateUser(event) {
 document.getElementById('Reset-Scores').addEventListener('submit', resetHighScores);
 saveUserName.addEventListener('submit', handleCreateUser);
 changeUser.addEventListener('click', handleChangeUsers);
+
+document.getElementById('Toggle-Chart').addEventListener('click', handleToggle);
+document.getElementById('Toggle-Table').addEventListener('click', handleToggle);

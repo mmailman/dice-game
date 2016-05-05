@@ -16,7 +16,7 @@
   <header>
     <div class="Name-Header">
       <img class="Logo" src="images/reallogo.png"/>
-      <h1 class="Game-Name">User Dashboard</h1>
+      <h1 class="Game-Name">Sasquatch Dice</h1>
     </div>
     <nav>
       <a href="index.html">User Information</a>
@@ -42,6 +42,9 @@
 
     <section id="Welcome-Container">
       <button id="Change-User">Change Users</button>
+      <form id="Reset-Scores">
+        <button class="Reset-Button" type="submit">Reset High Scores</button>
+      </form>
     </section>
 
     <section class="Score-Container" id="Points-Container">
@@ -74,15 +77,14 @@
           </tr>
         </table>
       </div>
-      <form id="Reset-Scores">
-      <button class="Reset-Button" type="submit">Reset High Scores</button>
-      </form>
+      <button id="Toggle-Chart">Toggle Charts</button>
     </section>
 
     <section class="Chart-Container" id="Graph-Container">
       <canvas id="easy-canvas"></canvas>
       <canvas id="medium-canvas"></canvas>
       <canvas id="hard-canvas"></canvas>
+      <button id="Toggle-Table">Toggle Tables</button>
     </section>
   </main>
 
