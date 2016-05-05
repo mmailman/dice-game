@@ -125,17 +125,17 @@ function renderCharts() {
   };
   var easyData = {
     labels: easyTopNames,
-    datasets: [{label: 'Score', backgroundColor: 'green', borderColor: 'black', borderWidth: 2, data: easyTopScores}]
+    datasets: [{label: 'Score', backgroundColor: 'rgb(137, 235, 117)', borderColor: 'black', borderWidth: 2, data: easyTopScores}]
   };
 
   var mediumData = {
     labels: mediumTopNames,
-    datasets: [{label: 'Score', backgroundColor: 'rgb(83, 222, 176)', borderColor: 'black', borderWidth: 2, data: mediumTopScores}]
+    datasets: [{label: 'Score', backgroundColor: 'rgb(247, 238, 119)', borderColor: 'black', borderWidth: 2, data: mediumTopScores}]
   };
 
   var hardData = {
     labels: hardTopNames,
-    datasets: [{label: 'Score', backgroundColor: 'rgb(88, 186, 35)', borderColor: 'black', borderWidth: 2, data: hardTopScores}]
+    datasets: [{label: 'Score', backgroundColor: 'rgb(237, 109, 109)', borderColor: 'black', borderWidth: 2, data: hardTopScores}]
   };
   var easyChart = new Chart(canvasElEasy, {
     type: 'bar',
