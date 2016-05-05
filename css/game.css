@@ -1,9 +1,20 @@
-.Story > p {
-  text-indent: 1.5em;
+
+button {
+  height: 30px;
+  width: 80px;
+}
+
+li {
+  margin-top: 8px;
+  margin-right: 5%;
+}
+
+.instructions {
+  margin-left: 7%;
+  margin-right: 7%;
 }
 
 .Rules > p {
-  text-indent: 1.5em;
   text-align: left;
 }
 
@@ -25,9 +36,9 @@
     max-height: 50px;
     max-width: 50px;
     object-fit: scale-down;
-    border-style:solid;
-    border-width:medium;
+    border-width: 5px;
     margin: 5px;
+    border-radius: 5px;
 }
 
  .Status-Board{
@@ -53,10 +64,16 @@
 
  .claw {
    border-color: red;
+   border-style:solid;
  }
 
  .camera {
    border-color: green;
+   border-style:solid;
+ }
+
+ .tracks {
+   border-style: dashed;
  }
 
  .Username-And-Difficulty {
@@ -64,9 +81,8 @@
    height: 50px;
  }
 
- button {
-   height: 30px;
-   width: 80px;
+ .Dice-And-Status p {
+   text-align: center;
  }
 
 
@@ -75,13 +91,25 @@
 }
 
 #orange-dice > img{
-  background-color: orange;
+  background-color: rgb(237, 109, 109);
 }
 
 #gray-dice > img{
-  background-color: lightGray;
+  background-color: rgb(247, 238, 119);
 }
 
 #blue-dice > img{
-  background-color: skyBlue;
+  background-color: rgb(137, 235, 117);
+}
+
+#hard-die {
+  background-color: rgb(237, 109, 109);
+}
+
+#medium-die {
+  background-color: rgb(247, 238, 119);
+}
+
+#easy-die {
+  background-color: rgb(137, 235, 117);
 }
