@@ -97,41 +97,6 @@ Gray.prototype.roll = function() {
   this.lastRoll = result;
 };
 
-// Iffy to check local storage for game data
-(function checkLocal() {
-  if(localStorage.getItem('gameArray')) {
-    console.log('Local storage exists for game array');
-    var parsedGameArray = JSON.parse(localStorage.getItem('gameArray'));
-    gameArray = parsedGameArray;
-  } else {
-    console.log('Local storage does not exist for game array');
-  }
-  if(localStorage.getItem('currentUser')) {
-    console.log('Local storage exists for current user');
-    var parsedUser = JSON.parse(localStorage.getItem('currentUser'));
-    updateUser = parsedUser;
-  } else {
-    console.log('local storage does not exist for current user');
-    alert('You must be logged in to play. Please create a username or login, redirecting you to the Dashboard page.');
-    location.assign('../index.html');
-  }
-  document.getElementById('username').textContent = updateUser.userName;
-  neutralImageRender();
-})();
-
-//iffy to populate the dice arrays on page load
-(function populateDieArrays(){
-  for(var die = 0; die < 4; die++){
-    var orange = new Orange();
-    var blue = new Blue();
-    var gray = new Gray();
-
-    orangeDiceArray.push(orange);
-    blueDiceArray.push(blue);
-    grayDiceArray.push(gray);
-  }
-})();
-
 //function that chooses the neutral images
 function neutralImageRender(){
   var startingImage = document.createElement('img');
@@ -256,6 +221,8 @@ function renderScore(){
   getStatusDiv.appendChild(postCurrentScore);
   getStatusDiv.appendChild(postScoreToWin);
 }
+
+//function to be called in the case of a win or a loss
 function gameOutcome(string, source) {
   var outcomeText = document.createElement('p');
   var outcomeGif = document.createElement('img');
@@ -352,6 +319,41 @@ function handleEndTurn(){
     gameOutcome(outcomeMessage, gifSource);
   }
 }
+
+// Iffy to check local storage for game data
+(function checkLocal() {
+  if(localStorage.getItem('gameArray')) {
+    console.log('Local storage exists for game array');
+    var parsedGameArray = JSON.parse(localStorage.getItem('gameArray'));
+    gameArray = parsedGameArray;
+  } else {
+    console.log('Local storage does not exist for game array');
+  }
+  if(localStorage.getItem('currentUser')) {
+    console.log('Local storage exists for current user');
+    var parsedUser = JSON.parse(localStorage.getItem('currentUser'));
+    updateUser = parsedUser;
+  } else {
+    console.log('local storage does not exist for current user');
+    alert('You must be logged in to play. Please create a username or login, redirecting you to the Dashboard page.');
+    location.assign('../index.html');
+  }
+  document.getElementById('username').textContent = updateUser.userName;
+  neutralImageRender();
+})();
+
+//iffy to populate the dice arrays on page load
+(function populateDieArrays(){
+  for(var die = 0; die < 4; die++){
+    var orange = new Orange();
+    var blue = new Blue();
+    var gray = new Gray();
+
+    orangeDiceArray.push(orange);
+    blueDiceArray.push(blue);
+    grayDiceArray.push(gray);
+  }
+})();
 
 //adds event listener to submit button to choose difficulty
 document.getElementById('difficulty').addEventListener('submit', handleDifficulty);
