@@ -8,7 +8,6 @@ var graphContainer = document.getElementById('Graph-Container');
 var changeUser = document.getElementById('Change-User');
 var welcome = document.createElement('h3');
 
-var userArray = [];
 var gameArray = [];
 var hardScores = [];
 var mediumScores = [];
@@ -22,9 +21,8 @@ var hardTopNames = [];
 
 function User(userName) {
   this.userName = userName;
-  // this.scores = [];
-  // this.difficulties = [];
 }
+
 function displayWelcome() {
   welcomeContainer.appendChild(welcome);
   welcomeContainer.style.display = 'flex';
@@ -32,57 +30,6 @@ function displayWelcome() {
   graphContainer.style.display = 'flex';
   logIn.style.display = 'none';
 }
-
-
-function Game(user, score, difficulty){
-  this.user = user;
-  this.score = score;
-  this.difficulty = difficulty;
-}
-
-function handleChangeUsers(event) {
-  welcomeContainer.removeChild(welcome);
-  welcomeContainer.style.display = 'none';
-  graphContainer.style.display = 'none';
-  pointsContainer.style.display = 'none';
-  logIn.style.display = 'block';
-}
-
-function handleCreateUser(event) {
-  event.preventDefault();
-  var userNameValue = event.target.newUserName.value;
-  welcome.textContent = 'Welcome, ' + userNameValue;
-  displayWelcome();
-  var newUser = new User(userNameValue);
-  localStorage.setItem('currentUser', JSON.stringify(newUser));
-  userArray.push(newUser);
-  event.target.newUserName.value = null;
-}
-
-// Iffy to check local storage for game data
-(function checkLocal() {
-  if(localStorage.getItem('gameArray')) {
-    console.log('Local storage for game array exists');
-    var parsedGameArray = JSON.parse(localStorage.getItem('gameArray'));
-    gameArray = parsedGameArray;
-    populateScoreTable();
-    renderCharts();
-  } else {
-    console.log('Local storage does not exist for game Array');
-  }
-
-  if(localStorage.getItem('currentUser')) {
-    console.log('Local storage exists for current user');
-    var parsedUser = JSON.parse(localStorage.getItem('currentUser'));
-    welcome.textContent = 'Welcome, ' + parsedUser.userName;
-    displayWelcome();
-  } else {
-    console.log('local storage does not exist for current User');
-  }
-})();
-
-saveUserName.addEventListener('submit', handleCreateUser);
-changeUser.addEventListener('click', handleChangeUsers);
 
 //sorts gameArray into three separate arrays by difficulty
 function sortGameArray() {
@@ -110,17 +57,16 @@ function populateScoreTable() {
   sortByScore(hardScores);
   for (var i = 0; i < 3; i++) {
     if (easyScores[i]) {
+      var easyParent = document.getElementById('easy-table');
       var easyRow = document.createElement('tr');
       var easyDataName = document.createElement('td');
-      easyDataName.textContent = easyScores[i].userName;
       var easyDataScore = document.createElement('td');
+      easyDataName.textContent = easyScores[i].userName;
       easyDataScore.textContent = easyScores[i].score;
-      var easyParent = document.getElementById('easy-table');
       easyParent.appendChild(easyRow);
       easyRow.appendChild(easyDataName);
       easyRow.appendChild(easyDataScore);
-    };
-
+    }
     if (mediumScores[i]) {
       var mediumRow = document.createElement('tr');
       var mediumDataName = document.createElement('td');
@@ -203,3 +149,48 @@ function renderCharts() {
     }
   });
 }
+
+function handleChangeUsers(event) {
+  welcomeContainer.removeChild(welcome);
+  welcomeContainer.style.display = 'none';
+  graphContainer.style.display = 'none';
+  pointsContainer.style.display = 'none';
+  logIn.style.display = 'block';
+}
+
+function handleCreateUser(event) {
+  event.preventDefault();
+  var userNameValue = event.target.newUserName.value;
+  welcome.textContent = 'Welcome, ' + userNameValue;
+  displayWelcome();
+  var newUser = new User(userNameValue);
+  localStorage.setItem('currentUser', JSON.stringify(newUser));
+  event.target.newUserName.value = null;
+  document.getElementById('footer').style.display = 'flex';
+}
+
+// Iffy to check local storage for game data
+(function checkLocal() {
+  if(localStorage.getItem('gameArray')) {
+    console.log('Local storage for game array exists');
+    var parsedGameArray = JSON.parse(localStorage.getItem('gameArray'));
+    gameArray = parsedGameArray;
+    populateScoreTable();
+    renderCharts();
+  } else {
+    console.log('Local storage does not exist for game Array');
+  }
+
+  if(localStorage.getItem('currentUser')) {
+    console.log('Local storage exists for current user');
+    var parsedUser = JSON.parse(localStorage.getItem('currentUser'));
+    welcome.textContent = 'Welcome, ' + parsedUser.userName;
+    displayWelcome();
+  } else {
+    console.log('local storage does not exist for current User');
+    document.getElementById('footer').style.display = 'none';
+  }
+})();
+
+saveUserName.addEventListener('submit', handleCreateUser);
+changeUser.addEventListener('click', handleChangeUsers);
