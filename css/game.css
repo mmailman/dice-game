@@ -1,9 +1,20 @@
-.Story > p {
-  text-indent: 1.5em;
+
+button {
+  height: 30px;
+  width: 80px;
+}
+
+li {
+  margin-top: 8px;
+  margin-right: 5%;
+}
+
+.instructions {
+  margin-left: 7%;
+  margin-right: 7%;
 }
 
 .Rules > p {
-  text-indent: 1.5em;
   text-align: left;
 }
 
@@ -72,11 +83,6 @@
 
  .Dice-And-Status p {
    text-align: center;
- }
-
- button {
-   height: 30px;
-   width: 80px;
  }
 
 
