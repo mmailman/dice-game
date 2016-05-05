@@ -14,12 +14,14 @@ var gameArray = [];
 var totalScore = 0;
 var updateUser = new User();
 
+//Constructor for game object which saves data for each time played
 function ThisGame(userName, score, difficulty) {
   this.userName = userName;
   this.score = score;
   this.difficulty = difficulty;
 }
 
+//constructor for user to save username in game object
 function User() {
   this.userName = '';
 }
@@ -254,6 +256,26 @@ function renderScore(){
   getStatusDiv.appendChild(postCurrentScore);
   getStatusDiv.appendChild(postScoreToWin);
 }
+function gameOutcome(string, source) {
+  var outcomeText = document.createElement('p');
+  var outcomeGif = document.createElement('img');
+  var difficultyForm = document.getElementsByClassName('difficulty-submission');
+  var newGameObject = new ThisGame(updateUser.userName, totalScore, document.getElementById('select-difficulty').value);
+
+  outcomeText.textContent = string;
+  outcomeGif.src = source;
+  document.getElementById('End-Turn').disabled = true;
+  document.getElementById('Keep-Rolling').disabled = true;
+  document.getElementById('imageAnimation').innerHTML = null;
+  document.getElementById('imageAnimation').appendChild(outcomeText);
+  document.getElementById('imageAnimation').appendChild(outcomeGif);
+  for (var i = 0; i < difficultyForm.length; i++) {
+    difficultyForm[i].disabled = false;
+  }
+  document.getElementById('Dice-And-Status').hidden = true;
+  gameArray.push(newGameObject);
+  localStorage.setItem('gameArray', JSON.stringify(gameArray));
+}
 
 //function that handles Keep-Rolling event
 function handleKeepRolling() {
@@ -306,6 +328,9 @@ function handleDifficulty(event) {
 
 //function that handles End-Turn
 function handleEndTurn(){
+  var outcomeMessage = '';
+  var gifSource = '';
+
   roundCount++;
   if(mauledFlag !== true){
     countCamera();
@@ -314,46 +339,17 @@ function handleEndTurn(){
     mauledFlag = false;
   }
   renderScore();
-  var winText = document.createElement('p');
-  var outcomeGif = document.createElement('img');
-  var difficultyForm = document.getElementsByClassName('difficulty-submission');
-  var newGameObject = new ThisGame(updateUser.userName, totalScore, document.getElementById('select-difficulty').value);
-  var loseText = document.createElement('p');
-  var difficultyForm = document.getElementsByClassName('difficulty-submission');
-  var newGameObject = new ThisGame(updateUser.userName, totalScore, document.getElementById('select-difficulty').value);
 
   if(roundCount < maxRounds && totalScore < photosToWin){
     startRound();
   } else if(totalScore >= photosToWin){
-    document.getElementById('End-Turn').disabled = true;
-    document.getElementById('Keep-Rolling').disabled = true;
-    document.getElementById('scoreText').style.color = 'green';
-    document.getElementById('imageAnimation').innerHTML = null;
-    winText.textContent = 'Congratulations, you\'ve solved the mystery of Sasquatch!';
-    document.getElementById('imageAnimation').appendChild(winText);
-    outcomeGif.src = '../images/sasquatchGif.gif';
-    document.getElementById('imageAnimation').appendChild(outcomeGif);
-    for (var i = 0; i < difficultyForm.length; i++) {
-      difficultyForm[i].disabled = false;
-    }
-    document.getElementById('Dice-And-Status').hidden = true;
-    gameArray.push(newGameObject);
-    localStorage.setItem('gameArray', JSON.stringify(gameArray));
+    outcomeMessage = 'Congratulations, you\'ve solved the mystery of Sasquatch!';
+    gifSource = '../images/sasquatchGif.gif';
+    gameOutcome(outcomeMessage, gifSource);
   } else{
-    document.getElementById('End-Turn').disabled = true;
-    document.getElementById('Keep-Rolling').disabled = true;
-    document.getElementById('scoreText').style.color = 'red';
-    document.getElementById('imageAnimation').innerHTML = null;
-    loseText.textContent = 'Sorry, you\'ve been mauled to death. Try again later!';
-    document.getElementById('imageAnimation').appendChild(loseText);
-    outcomeGif.src = '../images/sasquatchmaul.gif';
-    document.getElementById('imageAnimation').appendChild(outcomeGif);
-    for (var i = 0; i < difficultyForm.length; i++) {
-      difficultyForm[i].disabled = false;
-    }
-    document.getElementById('Dice-And-Status').hidden = true;
-    gameArray.push(newGameObject);
-    localStorage.setItem('gameArray', JSON.stringify(gameArray));
+    outcomeMessage = 'Sorry, you\'ve been mauled to death. Try again later!';
+    gifSource = '../images/sasquatchmaul.gif';
+    gameOutcome(outcomeMessage, gifSource);
   }
 }
 
