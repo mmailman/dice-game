@@ -242,6 +242,6 @@ function handleCreateUser(event) {
     document.getElementById('footer').style.display = 'none';
   }
 })();
-document.getElementById('Reset-Scores').addEventListener('click', resetHighScores);
+document.getElementById('Reset-Scores').addEventListener('submit', resetHighScores);
 saveUserName.addEventListener('submit', handleCreateUser);
 changeUser.addEventListener('click', handleChangeUsers);
