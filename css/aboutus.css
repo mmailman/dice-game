@@ -6,6 +6,7 @@ img {
 p {
   margin-right: 30px;
   text-indent: 1.5em;
+  margin-top: 0;
 }
 
 .people {
@@ -23,11 +24,12 @@ p {
 .info {
   display: flex;
   flex-direction: column;
-  margin-left: 40px;
   max-width: 60%;
+  margin-right: 15px;
 }
 
 .our-names {
   font-family: 'Shadows Into Light', cursive;
   font-size: 30px;
+  margin: 0;
 }

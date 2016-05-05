@@ -1,6 +1,6 @@
 table {
   border-collapse: collapse;
-  margin: auto 10px auto 10px;
+  margin: 10px;
 }
 
 table, th, td {
@@ -25,6 +25,15 @@ canvas {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
+}
+
+.Form-Input {
+  height: 20px;
+  margin-top: 20px;
+}
+
+fieldset {
+  border:none;
 }
 
 .Score-Container {
@@ -58,6 +67,7 @@ canvas {
 #Welcome-Container {
   display: none;
 }
+
 
 #Points-Container {
   display: none;
