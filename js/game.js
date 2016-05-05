@@ -113,6 +113,8 @@ Gray.prototype.roll = function() {
     alert('You must be logged in to play. Please create a username or login, redirecting you to the Dashboard page.');
     location.assign('../index.html');
   }
+  document.getElementById('username').textContent = updateUser.userName;
+  neutralImageRender();
 })();
 
 //iffy to populate the dice arrays on page load
@@ -127,6 +129,18 @@ Gray.prototype.roll = function() {
     grayDiceArray.push(gray);
   }
 })();
+
+//function that chooses the neutral images
+function neutralImageRender(){
+  var startingImage = document.createElement('img');
+
+  if(updateUser.userName.toUpperCase() === 'BENTON'){
+    startingImage.src = '../images/gandalf.gif';
+  } else {
+    startingImage.src = '../images/neutralsasquatch2.jpg';
+  }
+  document.getElementById('imageAnimation').appendChild(startingImage);
+}
 
 //does the initial roll for a round.
 function startRound(){
@@ -285,6 +299,8 @@ function handleDifficulty(event) {
   document.getElementById('Dice-And-Status').hidden = false;
   document.getElementById('End-Turn').disabled = false;
   document.getElementById('Keep-Rolling').disabled = false;
+  document.getElementById('imageAnimation').innerHTML = null;
+  neutralImageRender();
   startRound();
 }
 
@@ -312,7 +328,7 @@ function handleEndTurn(){
     document.getElementById('End-Turn').disabled = true;
     document.getElementById('Keep-Rolling').disabled = true;
     document.getElementById('scoreText').style.color = 'green';
-    var winText = document.createElement('p');
+    document.getElementById('imageAnimation').innerHTML = null;
     winText.textContent = 'Congratulations, you\'ve solved the mystery of Sasquatch!';
     document.getElementById('imageAnimation').appendChild(winText);
     outcomeGif.src = '../images/sasquatchGif.gif';
@@ -326,7 +342,8 @@ function handleEndTurn(){
     document.getElementById('End-Turn').disabled = true;
     document.getElementById('Keep-Rolling').disabled = true;
     document.getElementById('scoreText').style.color = 'red';
-    loseText.textContent = 'Sorry, you\'ve been mauled to death. Please seek medical attention and try again later!';
+    document.getElementById('imageAnimation').innerHTML = null;
+    loseText.textContent = 'Sorry, you\'ve been mauled to death. Try again later!';
     document.getElementById('imageAnimation').appendChild(loseText);
     outcomeGif.src = '../images/sasquatchmaul.gif';
     document.getElementById('imageAnimation').appendChild(outcomeGif);
