@@ -156,6 +156,7 @@ function handleChangeUsers(event) {
   graphContainer.style.display = 'none';
   pointsContainer.style.display = 'none';
   logIn.style.display = 'block';
+  document.getElementById('footer').style.display = 'none';
 }
 
 function handleCreateUser(event) {
