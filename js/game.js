@@ -41,9 +41,11 @@ Die.prototype.randomNumber = function() {
 //Orange die constructor (hardest)
 function Orange() {}
 Orange.prototype = new Die(3,1,2);
+
 //Blue die constructor (easiest)
 function Blue() {}
 Blue.prototype = new Die(1,3,2);
+
 //Gray die constructor (medium)
 function Gray() {}
 Gray.prototype = new Die(2,2,2);
@@ -62,6 +64,7 @@ Orange.prototype.roll = function() {
   }
   this.lastRoll = result;
 };
+
 //Roll method for the blue dice
 Blue.prototype.roll = function() {
   var random = this.randomNumber();
@@ -76,6 +79,7 @@ Blue.prototype.roll = function() {
   }
   this.lastRoll = result;
 };
+
 //Roll method for the gray dice
 Gray.prototype.roll = function() {
   var random = this.randomNumber();
@@ -90,6 +94,26 @@ Gray.prototype.roll = function() {
   }
   this.lastRoll = result;
 };
+
+// Iffy to check local storage for game data
+(function checkLocal() {
+  if(localStorage.getItem('gameArray')) {
+    console.log('Local storage exists for game array');
+    var parsedGameArray = JSON.parse(localStorage.getItem('gameArray'));
+    gameArray = parsedGameArray;
+  } else {
+    console.log('Local storage does not exist for game array');
+  }
+  if(localStorage.getItem('currentUser')) {
+    console.log('Local storage exists for current user');
+    var parsedUser = JSON.parse(localStorage.getItem('currentUser'));
+    updateUser = parsedUser;
+  } else {
+    console.log('local storage does not exist for current user');
+    alert('You must be logged in to play. Please create a username or login, redirecting you to the Dashboard page.');
+    location.assign('../index.html');
+  }
+})();
 
 //iffy to populate the dice arrays on page load
 (function populateDieArrays(){
@@ -116,7 +140,6 @@ function startRound(){
     dieTitleContainer.removeChild(dieTitleContainer.children[1]);
     document.getElementById('Keep-Rolling').disabled = false;
   }
-  //call to render images to page
   renderDice();
   countMaul();
   renderScore();
@@ -202,14 +225,15 @@ function checkScore(){
 //function to render the score status in status board
 function renderScore(){
   var getStatusDiv = document.getElementById('Render-Zone');
-  getStatusDiv.innerHTML = null;
-  var roundsRemaining = (maxRounds - roundCount) - 1;
-  checkScore();
+  var roundsRemaining = maxRounds - roundCount;
   var postRounds = document.createElement('p');
-  postRounds.textContent = 'You have ' + roundsRemaining + ' rounds left.';
   var postCurrentScore = document.createElement('p');
-  postCurrentScore.textContent = 'Your current score is: ' + totalScore;
   var postScoreToWin = document.createElement('p');
+
+  getStatusDiv.innerHTML = null;
+  checkScore();
+  postRounds.textContent = 'You have ' + roundsRemaining + ' rounds left.';
+  postCurrentScore.textContent = 'Your current score is: ' + totalScore;
   postScoreToWin.textContent = 'Score needed to win: ' + photosToWin;
   postCurrentScore.id = 'scoreText';
   getStatusDiv.appendChild(postRounds);
@@ -236,7 +260,7 @@ function handleKeepRolling() {
 
 //function that handles difficulty Selection and Game Start
 function handleDifficulty(event) {
-  roundCount = 0;
+  roundCount = 1;
   scoreArray = [];
   var getStatusDiv = document.getElementById('Render-Zone');
   var clearImageAnimation = document.getElementById('imageAnimation');
@@ -247,7 +271,6 @@ function handleDifficulty(event) {
   event.preventDefault();
   for (var i = 0; i < difficultyForm.length; i++) {
     difficultyForm[i].disabled = true;
-    // console.log(difficultyForm[i]);
   }
   if (difficultyChosen === 'easy') {
     maxRounds = 3;
@@ -270,12 +293,10 @@ function handleEndTurn(){
   roundCount++;
   if(mauledFlag !== true){
     countCamera();
-    //call the status board render function.
   } else {
     scoreArray.push(0);
     mauledFlag = false;
   }
-  // checkScore();
   renderScore();
   var winText = document.createElement('p');
   var outcomeGif = document.createElement('img');
@@ -284,7 +305,6 @@ function handleEndTurn(){
   var loseText = document.createElement('p');
   var difficultyForm = document.getElementsByClassName('difficulty-submission');
   var newGameObject = new ThisGame(updateUser.userName, totalScore, document.getElementById('select-difficulty').value);
-
 
   if(roundCount < maxRounds && totalScore < photosToWin){
     startRound();
@@ -317,26 +337,6 @@ function handleEndTurn(){
     localStorage.setItem('gameArray', JSON.stringify(gameArray));
   }
 }
-
-// Iffy to check local storage for game data
-(function checkLocal() {
-  if(localStorage.getItem('gameArray')) {
-    console.log('Local storage exists for game array');
-    var parsedGameArray = JSON.parse(localStorage.getItem('gameArray'));
-    gameArray = parsedGameArray;
-  } else {
-    console.log('Local storage does not exist for game array');
-  }
-  if(localStorage.getItem('currentUser')) {
-    console.log('Local storage exists for current user');
-    var parsedUser = JSON.parse(localStorage.getItem('currentUser'));
-    updateUser = parsedUser;
-  } else {
-    console.log('local storage does not exist for current user');
-    alert('You must be logged in to play. Please create a username on our home page.');
-    location.assign('stats.html');
-  }
-})();
 
 //adds event listener to submit button to choose difficulty
 document.getElementById('difficulty').addEventListener('submit', handleDifficulty);

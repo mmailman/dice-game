@@ -8,11 +8,6 @@ p {
   text-indent: 1.5em;
 }
 
-h1{
-  margin-bottom: 0px;
-  margin-top: 12px;
-}
-
 .people {
   display: flex;
   flex-wrap:wrap;
