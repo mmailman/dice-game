@@ -1,3 +1,7 @@
+fieldset {
+  border:none;
+}
+
 table {
   border-collapse: collapse;
   margin: 10px;
@@ -6,11 +10,10 @@ table {
 table, th, td {
   /*border: solid black thin;*/
   border-bottom: 1px solid #ddd;
-  background-color: sienna;
+  background-color: #bf8040;
   color: white;
   border-radius: 12px;
   font-family: sans-serif;
-
 }
 
 th, td {
@@ -18,13 +21,18 @@ th, td {
   text-align: center;
 }
 
+canvas {
+  width: 30%;
+  /*height: 50%;*/
+}
+
 button:hover {
   background-color: rgb(195, 195, 195);
 }
 
-canvas {
-  width: 30%;
-  /*height: 50%;*/
+.Reset-Button {
+  margin-top: 30px;
+  height: 50px;
 }
 
 .Form-Content {
@@ -38,9 +46,6 @@ canvas {
   margin-top: 20px;
 }
 
-fieldset {
-  border:none;
-}
 
 .Score-Container {
   flex-direction: column;
@@ -58,12 +63,6 @@ fieldset {
   justify-content: space-around;
   flex-wrap: wrap;
   /*height: 400px;*/
-}
-
-.Reset-Button {
-  margin-bottom: 5px;
-  height: 30px;
-  width: 125px;
 }
 
 #Log-In {
@@ -88,3 +87,13 @@ fieldset {
   margin-left: 15px;
   margin-right: 25px;
 }
+
+#Toggle-Chart, #Toggle-Table {
+  margin-bottom: 1.5%;
+  margin-left: 83%;
+}
+
+/*#Toggle-Table {
+  margin-left: 85%;
+
+}*/
