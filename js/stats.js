@@ -7,6 +7,9 @@ var pointsContainer = document.getElementById('Points-Container');
 var graphContainer = document.getElementById('Graph-Container');
 var changeUser = document.getElementById('Change-User');
 var welcome = document.createElement('h3');
+var easyParent = document.getElementById('easy-table');
+var mediumParent = document.getElementById('medium-table');
+var hardParent = document.getElementById('hard-table');
 
 var gameArray = [];
 var hardScores = [];
@@ -21,6 +24,33 @@ var hardTopNames = [];
 
 function User(userName) {
   this.userName = userName;
+}
+
+function resetHighScores() {
+  gameArray = [];
+  easyScores = [];
+  mediumScores = [];
+  hardScores = [];
+  easyTopScores = [];
+  easyTopNames = [];
+  mediumTopScores = [];
+  mediumTopNames = [];
+  hardTopNames = [];
+  hardTopScores = [];
+  var easyChildren = easyParent.children;
+  var mediumChildren = mediumParent.children;
+  var hardChildren = hardParent.children;
+  while(hardChildren.length > 1) {
+    hardParent.removeChild(hardParent.lastChild);
+  }
+  while(mediumChildren.length > 1) {
+    mediumParent.removeChild(mediumParent.lastChild);
+  }
+  while(easyChildren.length > 1) {
+    easyParent.removeChild(easyParent.lastChild);
+  }
+  localStorage.setItem('gameArray', JSON.stringify(gameArray));
+  renderCharts();
 }
 
 function displayWelcome() {
@@ -57,7 +87,6 @@ function populateScoreTable() {
   sortByScore(hardScores);
   for (var i = 0; i < 3; i++) {
     if (easyScores[i]) {
-      var easyParent = document.getElementById('easy-table');
       var easyRow = document.createElement('tr');
       var easyDataName = document.createElement('td');
       var easyDataScore = document.createElement('td');
@@ -73,7 +102,6 @@ function populateScoreTable() {
       mediumDataName.textContent = mediumScores[i].userName;
       var mediumDataScore = document.createElement('td');
       mediumDataScore.textContent = mediumScores[i].score;
-      var mediumParent = document.getElementById('medium-table');
       mediumParent.appendChild(mediumRow);
       mediumRow.appendChild(mediumDataName);
       mediumRow.appendChild(mediumDataScore);
@@ -85,7 +113,6 @@ function populateScoreTable() {
       hardDataName.textContent = hardScores[i].userName;
       var hardDataScore = document.createElement('td');
       hardDataScore.textContent = hardScores[i].score;
-      var hardParent = document.getElementById('hard-table');
       hardParent.appendChild(hardRow);
       hardRow.appendChild(hardDataName);
       hardRow.appendChild(hardDataScore);
@@ -191,6 +218,6 @@ function handleCreateUser(event) {
     document.getElementById('footer').style.display = 'none';
   }
 })();
-
+document.getElementById('Reset-Scores').addEventListener('click', resetHighScores);
 saveUserName.addEventListener('submit', handleCreateUser);
 changeUser.addEventListener('click', handleChangeUsers);
