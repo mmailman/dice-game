@@ -287,14 +287,14 @@ function handleDifficulty(event) {
     difficultyForm[i].disabled = true;
   }
   if (difficultyChosen === 'easy') {
-    maxRounds = 3;
-    photosToWin = 5;
+    maxRounds = 5;
+    photosToWin = 9;
   } else if (difficultyChosen === 'medium') {
-    maxRounds = 3;
-    photosToWin = 7;
+    maxRounds = 5;
+    photosToWin = 11;
   } else {
-    maxRounds = 2;
-    photosToWin = 7;
+    maxRounds = 4;
+    photosToWin = 11;
   }
   document.getElementById('Dice-And-Status').hidden = false;
   document.getElementById('End-Turn').disabled = false;
@@ -336,6 +336,7 @@ function handleEndTurn(){
     for (var i = 0; i < difficultyForm.length; i++) {
       difficultyForm[i].disabled = false;
     }
+    document.getElementById('Dice-And-Status').hidden = true;
     gameArray.push(newGameObject);
     localStorage.setItem('gameArray', JSON.stringify(gameArray));
   } else{
@@ -350,6 +351,7 @@ function handleEndTurn(){
     for (var i = 0; i < difficultyForm.length; i++) {
       difficultyForm[i].disabled = false;
     }
+    document.getElementById('Dice-And-Status').hidden = true;
     gameArray.push(newGameObject);
     localStorage.setItem('gameArray', JSON.stringify(gameArray));
   }
