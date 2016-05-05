@@ -8,7 +8,8 @@ table, th, td {
 }
 
 th, td {
-  width: 150px;
+  width: 120px;
+  text-align: center;
 }
 
 .Form-Content {
@@ -34,6 +35,12 @@ th, td {
   height: 400px;
 }
 
+.Reset-Button {
+  margin-bottom: 5px;
+  height: 30px;
+  width: 125px;
+}
+
 #Log-In {
   display: block;
 }
@@ -48,6 +55,16 @@ th, td {
 
 #Graph-Container {
   display:none;
+}
+
+#Change-User {
+  margin-top: 30px;
+  margin-left: 15px;
+  margin-right: 25px;
+}
+
+button:hover {
+  background-color: rgb(195, 195, 195);
 }
 
 canvas {
