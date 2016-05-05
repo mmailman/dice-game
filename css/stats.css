@@ -12,6 +12,15 @@ th, td {
   text-align: center;
 }
 
+button:hover {
+  background-color: rgb(195, 195, 195);
+}
+
+canvas {
+  width: 30%;
+  /*height: 50%;*/
+}
+
 .Form-Content {
   display: flex;
   flex-direction: row;
@@ -32,7 +41,8 @@ th, td {
 .Chart-Container {
   display: flex;
   justify-content: space-around;
-  height: 400px;
+  flex-wrap: wrap;
+  /*height: 400px;*/
 }
 
 .Reset-Button {
@@ -61,13 +71,4 @@ th, td {
   margin-top: 30px;
   margin-left: 15px;
   margin-right: 25px;
-}
-
-button:hover {
-  background-color: rgb(195, 195, 195);
-}
-
-canvas {
-  max-width: 30%;
-  max-height: 50%;
 }

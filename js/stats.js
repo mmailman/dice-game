@@ -141,7 +141,7 @@ function renderCharts() {
   var easyData = {
     labels: easyTopNames,
     datasets: [{label: 'Score', backgroundColor: 'green', borderColor: 'black', borderWidth: 2, data: easyTopScores}]
-  }
+  };
 
   var mediumData = {
     labels: mediumTopNames,
@@ -151,28 +151,65 @@ function renderCharts() {
   var hardData = {
     labels: hardTopNames,
     datasets: [{label: 'Score', backgroundColor: 'rgb(88, 186, 35)', borderColor: 'black', borderWidth: 2, data: hardTopScores}]
-  }
+  };
   var easyChart = new Chart(canvasElEasy, {
     type: 'bar',
     data: easyData,
-    title:{
-      text: 'Easy High Scores',
+    options: {
+      title:{
+        text: 'Easy High Scores',
+        display: true
+      },
+      responsive: false,
+      scales: {
+        yAxes: [{
+          type: 'linear',
+          ticks: {
+            beginAtZero:true,
+            stepSize: 1
+          }
+        }]
+      }
     }
   });
   var mediumChart = new Chart(canvasElMedium, {
     type: 'bar',
     data: mediumData,
-    title:{
-      text:'Medium High Scores',
-      display: true,
+    options: {
+      title:{
+        text:'Medium High Scores',
+        display: true,
+      },
+      responsive: false,
+      scales: {
+        yAxes: [{
+          type: 'linear',
+          ticks: {
+            beginAtZero:true,
+            stepSize: 1
+          }
+        }]
+      }
     }
   });
   var hardChart = new Chart(canvasElHard, {
     type: 'bar',
     data: hardData,
-    title:{
-      text: 'Hard High Scores',
-      display : true,
+    options: {
+      title:{
+        text: 'Hard High Scores',
+        display : true,
+      },
+      responsive: false,
+      scales: {
+        yAxes: [{
+          type: 'linear',
+          ticks: {
+            beginAtZero:true,
+            stepSize: 1
+          }
+        }]
+      }
     }
   });
 }
