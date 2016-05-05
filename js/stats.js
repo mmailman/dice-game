@@ -25,6 +25,14 @@ function User(userName) {
   // this.scores = [];
   // this.difficulties = [];
 }
+function displayWelcome() {
+  welcomeContainer.appendChild(welcome);
+  welcomeContainer.style.display = 'flex';
+  pointsContainer.style.display = 'flex';
+  graphContainer.style.display = 'flex';
+  logIn.style.display = 'none';
+}
+
 
 function Game(user, score, difficulty){
   this.user = user;
@@ -44,11 +52,7 @@ function handleCreateUser(event) {
   event.preventDefault();
   var userNameValue = event.target.newUserName.value;
   welcome.textContent = 'Welcome, ' + userNameValue;
-  welcomeContainer.appendChild(welcome);
-  welcomeContainer.style.display = 'flex';
-  pointsContainer.style.display = 'flex';
-  graphContainer.style.display = 'flex';
-  logIn.style.display = 'none';
+  displayWelcome();
   var newUser = new User(userNameValue);
   localStorage.setItem('currentUser', JSON.stringify(newUser));
   userArray.push(newUser);
@@ -71,11 +75,7 @@ function handleCreateUser(event) {
     console.log('Local storage exists for current user');
     var parsedUser = JSON.parse(localStorage.getItem('currentUser'));
     welcome.textContent = 'Welcome, ' + parsedUser.userName;
-    welcomeContainer.appendChild(welcome);
-    welcomeContainer.style.display = 'flex';
-    pointsContainer.style.display = 'flex';
-    graphContainer.style.display = 'flex';
-    logIn.style.display = 'none';
+    displayWelcome();
   } else {
     console.log('local storage does not exist for current User');
   }
